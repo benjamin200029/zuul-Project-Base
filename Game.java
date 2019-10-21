@@ -35,36 +35,70 @@ public class Game
     private void createRooms()
     {
         // new rooms created after office
-        Room outside, theater, pub, lab, office, sciLab, tutoringCenter,artsCenter,
-        gym,library, parkingLot1,parkingLot2,sciBuilding,cafe,outsideCafe;
+        Room outside, theater, studentCenter, computerLab, office, sciLab, guidance,artCenter,
+        gym,library, parkingLot1,parkingLot2,sciCenter,cafeteria,collegeCenter;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
         theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
+        studentCenter = new Room("in the Student Center");
+        computerLab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         sciLab = new Room("in the Science lab");
-        tutoringCenter = new Room("in the TutoringCenter");
-        artsCenter = new Room("in the arts center");
+        guidance = new Room("in the TutoringCenter");
+        artCenter = new Room("in the arts center");
         gym = new Room("in the Gym");
-        library = new Room("library");
+        library = new Room("in the library");
         parkingLot1 = new Room("You are in the Northern parking lot");
         parkingLot2 = new Room("You are in the Southern parking lot");
+        sciCenter = new Room("You are in the Science Center");
+        cafeteria = new Room("You are in the Cafeteria");
+        collegeCenter = new Room("You are in the College Center");
+        
         
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        outside.setExit("north", parkingLot1);
+        outside.setExit("south", parkingLot2);
+        outside.setExit("east", collegeCenter);
+        
+        parkingLot1.setExit("south",outside);
+        parkinglot2.setExit("north",outside);
 
-        theater.setExit("west", outside);
+        collegeCenter.setExit("north", artCenter);
+        collegeCenter.setExit("south", library);
+        collegeCenter.setExit("east", studentCenter);
+        collegeCenter.setExit("west", outside);
+        
+        theater.setExit("south",artCenter);
+        
+        artCenter.setExit("north",theater);
+        artCenter.setExit("south",collegeCenter);
+        
+        studentCenter.setExit("west",collegeCenter);
+        studentCenter.setExit("up",gym);
+        studentCenter.setExit("down",cafeteria);
+        
+        gym.setExit("down",studentCenter);
+        
+        cafeteria.setExit("up",studentCenter);
+        
+        library.setExit("north",collegeCenter);
+        library.setExit("east",sciCenter);
+        library.setExit("up",guidance);
+        
+        guidance.setExit("up",office);
+        guidance.setExit("down",library);
+        
+        office.setExit("down", guidance);
+        
+        sciCenter.setExit("west",library);
+        sciCenter.setExit("east",sciLab);
+        sciCenter.setExit("south",computerLab);
 
-        pub.setExit("east", outside);
+        computerLab.setExit("north", sciCenter);
+        
+        sciLab.setExit("west",sciCenter);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
 
         currentRoom = outside;  // start game outside
     }
