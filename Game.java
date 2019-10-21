@@ -62,7 +62,7 @@ public class Game
         outside.setExit("east", collegeCenter);
         
         parkingLot1.setExit("south",outside);
-        parkinglot2.setExit("north",outside);
+        parkingLot2.setExit("north",outside);
 
         collegeCenter.setExit("north", artCenter);
         collegeCenter.setExit("south", library);
