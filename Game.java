@@ -35,8 +35,8 @@ public class Game
     private void createRooms()
     {
         // new rooms created after office
-        Room outside, theater, pub, lab, office, sciLab, tutoringCenter,arts_building,
-        gym,library, parkingLot1,parkingLot2,sciBuilding,backOutside,backParkingLot;
+        Room outside, theater, pub, lab, office, sciLab, tutoringCenter,artsCenter,
+        gym,library, parkingLot1,parkingLot2,sciBuilding,cafe,outsideCafe;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -46,6 +46,11 @@ public class Game
         office = new Room("in the computing admin office");
         sciLab = new Room("in the Science lab");
         tutoringCenter = new Room("in the TutoringCenter");
+        artsCenter = new Room("in the arts center");
+        gym = new Room("in the Gym");
+        library = new Room("library");
+        parkingLot1 = new Room("You are in the Northern parking lot");
+        parkingLot2 = new Room("You are in the Southern parking lot");
         
         // initialise room exits
         outside.setExit("east", theater);
