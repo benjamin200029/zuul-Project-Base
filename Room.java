@@ -19,7 +19,14 @@ import java.util.Iterator;
 public class Room 
 {
     private String description;
-    private HashMap<String, Room> exits;        // stores exits of this room.
+    private HashMap<String, Room> exits;   
+    // stores exits of this room.
+    
+    public Room northExit;
+    public Room southExit;
+    public Room eastExit;
+    public Room westExit;
+
 
     /**
      * Create a room described "description". Initially, it has
