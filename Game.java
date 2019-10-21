@@ -63,6 +63,16 @@ public class Game
 
         currentRoom = outside;  // start game outside
     }
+    
+    /**
+     * Main method
+     * @param args 
+     */
+    public static void main(String[] args)
+    {
+        Game myGame = new Game();
+        myGame.play();
+    }
 
     /**
      *  Main play routine.  Loops until end of play.
