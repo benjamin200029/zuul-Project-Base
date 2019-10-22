@@ -43,15 +43,15 @@ public class Game
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
+        theater = new Room("in a Lecture Theater");
         studentCenter = new Room("in the Student Center");
-        computerLab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        computerLab = new Room("in a Computing Lab");
+        office = new Room("in the Computing Admin Office");
         sciLab = new Room("in the Science lab");
-        guidance = new Room("in the TutoringCenter");
+        guidance = new Room("in the Guidance Center");
         artCenter = new Room("in the arts center");
         gym = new Room("in the Gym");
-        library = new Room("in the library");
+        library = new Room("in the Library");
         parkingLot1 = new Room("in the Northern parking lot");
         parkingLot2 = new Room("in the Southern parking lot");
         sciCenter = new Room("in the Science Center");
