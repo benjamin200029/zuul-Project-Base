@@ -10,6 +10,9 @@
  *  This main class creates and initialises all the others: it creates all
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
+ *  
+ * @author Benjamin Adelson and Erik Cooke
+ * @version 2019.10.21
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
@@ -35,8 +38,8 @@ public class Game
     private void createRooms()
     {
         // new rooms created after office
-        Room outside, theater, studentCenter, computerLab, office, sciLab, guidance,artCenter,
-        gym,library, parkingLot1,parkingLot2,sciCenter,cafeteria,collegeCenter;
+        Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
+        gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -49,11 +52,11 @@ public class Game
         artCenter = new Room("in the arts center");
         gym = new Room("in the Gym");
         library = new Room("in the library");
-        parkingLot1 = new Room("You are in the Northern parking lot");
-        parkingLot2 = new Room("You are in the Southern parking lot");
-        sciCenter = new Room("You are in the Science Center");
-        cafeteria = new Room("You are in the Cafeteria");
-        collegeCenter = new Room("You are in the College Center");
+        parkingLot1 = new Room("in the Northern parking lot");
+        parkingLot2 = new Room("in the Southern parking lot");
+        sciCenter = new Room("in the Science Center");
+        cafeteria = new Room("in the Cafeteria");
+        collegeCenter = new Room("in the College Center");
         
         
         // initialise room exits
@@ -105,7 +108,7 @@ public class Game
     
     /**
      * Main method
-     * @param args 
+     * @param args array of String for passed in arguments
      */
     public static void main(String[] args)
     {
