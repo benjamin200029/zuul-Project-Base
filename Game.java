@@ -175,7 +175,8 @@ public class Game
             
             case UNKNOWN:
                 System.out.println("I don't know what you mean...");
-                break;                    
+                break;
+                
             case HELP:
                 printHelp();
                 break;
