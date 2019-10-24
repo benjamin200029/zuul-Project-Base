@@ -174,6 +174,10 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+                
+            case LOOK:
+                 look();
+                 break;
         }
         return wantToQuit;
     }
@@ -234,5 +238,13 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+    
+    /**
+     * Prints the description of the room and the exits.
+     */
+    public void look()
+    {
+        System.out.println(currentRoom.getLongDescription());
     }
 }
