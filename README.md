@@ -11,6 +11,7 @@ If any of the following steps are not completed, the assignment will not be grad
 -DONE-Your map must contain at least 15 rooms, though it may contain more if you wish
 
 Everyone must 
+
 -DONE-8.14 - add the look command to your game (p 303) 
 
 To earn a C implement the following:
@@ -21,6 +22,7 @@ To earn a C implement the following:
  
 
 To Earn a B, complete the C task and Implement three (3) of the following
+
 1-DONE-8.20/8.21 (p 308) - add items to your game. Each room can have one item in it. Items have description and weight. When printing room info, Item should be included
 
 2-DONE-8.22 (p 308)- make it so rooms can hold multiple items
