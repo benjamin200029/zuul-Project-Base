@@ -4,10 +4,14 @@ Mandatory features:
 If any of the following steps are not completed, the assignment will not be graded.
 
 -Every class must have a meaningful javadoc class header with appropriate text and updated @author and @version directives
+
 -Every method must have a meaningful javadoc method comment with appropriate directives (@param, @return, @throws, etc.)
+
 -The javadoc for your project must be generated and in the doc directory in your project directory
+
 -DONE-There must be a main method for the game class that allows the game to be run outside of BlueJ
 (The game can still be invoked from within BlueJ by instantiating the Game class and invoking play() method)
+
 -DONE-Your map must contain at least 15 rooms, though it may contain more if you wish
 
 Everyone must 
