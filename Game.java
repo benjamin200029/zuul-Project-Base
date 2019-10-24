@@ -18,7 +18,7 @@
  * @version 2016.02.29
  */
 
-public class Game 
+public class Game
 {
     private Parser parser;
     private Room currentRoom;
@@ -40,6 +40,8 @@ public class Game
         // new rooms created after office
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
+        
+        Item flashlight;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -58,6 +60,8 @@ public class Game
         cafeteria = new Room("in the Cafeteria");
         collegeCenter = new Room("in the College Center");
         
+        // create items
+        flashlight = new Item("Flashlight", 0.5);
         
         // initialise room exits
         outside.setExit("north", parkingLot1);
@@ -176,8 +180,12 @@ public class Game
                 break;
                 
             case LOOK:
-                 look();
+                look();
                  break;
+                 
+            case EAT:
+                eat();
+                break;
         }
         return wantToQuit;
     }
@@ -246,5 +254,13 @@ public class Game
     public void look()
     {
         System.out.println(currentRoom.getLongDescription());
+    }
+    
+    /**
+     * The user eats something
+     */
+    public void eat()
+    {
+        System.out.println("I was hungry, that was good.");
     }
 }

@@ -21,13 +21,14 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;   
     // stores exits of this room.
-    
+        
     public Room northExit;
     public Room southExit;
     public Room eastExit;
     public Room westExit;
-
-
+    
+    public Item roomItem;
+    
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
