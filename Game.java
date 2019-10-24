@@ -112,6 +112,14 @@ public class Game
         Game myGame = new Game();
         myGame.play();
     }
+    
+    /**
+     *  look around command.
+     */
+    private void look()
+    {
+       System.out.println(currentRoom.getLongDescription()); 
+    }
 
     /**
      *  Main play routine.  Loops until end of play.
@@ -137,8 +145,8 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the College of Raritan!");
+        System.out.println("College of Raritan is a new, incredibly boring educational game that gives you a simulation actully being in college.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -156,12 +164,20 @@ public class Game
         CommandWord commandWord = command.getCommandWord();
 
         switch (commandWord) {
+            
             case UNKNOWN:
                 System.out.println("I don't know what you mean...");
-                break;
-
+                break;                    
             case HELP:
                 printHelp();
+                break;
+            
+            case LOOK:
+                look();
+                break;
+                
+            case EAT:
+                eat();
                 break;
 
             case GO:
@@ -175,6 +191,12 @@ public class Game
         return wantToQuit;
     }
 
+    private void eat()
+    {
+        System.out.println("You have eaten now and you are not hungry any more");
+    }
+    
+    
     // implementations of user commands:
 
     /**
@@ -185,7 +207,7 @@ public class Game
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("around at the college.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
