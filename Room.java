@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 /**
  * Class Room - a room in an adventure game.
@@ -27,7 +28,7 @@ public class Room
     public Room eastExit;
     public Room westExit;
     
-    public Item roomItem;
+    private ArrayList<Item> roomItems;
     
     /**
      * Create a room described "description". Initially, it has
@@ -39,6 +40,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
+        roomItems = new ArrayList<Item>(5);
     }
 
     /**
@@ -68,7 +70,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString() + "\n" + getItemString();
     }
 
     /**
@@ -95,6 +97,61 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    
+    /**
+     * Adds and item to this room
+     * 
+     * @param newItem The new item to be added to this room
+     */
+    public void addItem(Item newItem)
+    {
+        roomItems.add(newItem);
+    }
+    
+    /**
+     * Removes and item from this room
+     * 
+     * @param oldItem the item to be removed from this room
+     */
+    public void removeItem(Item oldItem)
+    {
+        roomItems.remove(oldItem);
+    }
+    
+    /**
+     * Returns an ArrayList of the items in this room
+     */
+    public ArrayList<Item> getItems()
+    {
+       if(roomItems.isEmpty())
+       {
+           return null;
+       }
+       else
+       {
+           return roomItems;
+       }
+    }
+    
+    /**
+     * Returns a string of the items in the current room or null if there are no items
+     */
+    public String getItemString()
+    {
+        if(roomItems.isEmpty())
+        {
+            return "Items: None\n";
+        }
+        else
+        {
+            String returnItems = "Items: Weight:\n";
+            for(Item item : roomItems)
+            {
+                returnItems += item.getDescription() + " " + item.getWeight() + "\n";
+            }
+            return returnItems;
+        }
     }
 }
 
