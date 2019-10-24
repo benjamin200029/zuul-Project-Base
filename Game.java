@@ -126,14 +126,6 @@ public class Game
     }
     
     /**
-     *  look around command.
-     */
-    private void look()
-    {
-       System.out.println(currentRoom.getLongDescription()); 
-    }
-
-    /**
      *  Main play routine.  Loops until end of play.
      */
     public void play() 
@@ -199,23 +191,9 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
-                
-            case LOOK:
-                look();
-                 break;
-                 
-            case EAT:
-                eat();
-                break;
         }
         return wantToQuit;
     }
-
-    private void eat()
-    {
-        System.out.println("You have eaten now and you are not hungry any more");
-    }
-    
     
     // implementations of user commands:
 
