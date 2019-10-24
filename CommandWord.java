@@ -2,6 +2,9 @@
  * Representations for all the valid command words for the game
  * along with a string in a particular language.
  * 
+ * @author Benjamin Adelson and Erik Cooke
+ * @version 2019.10.21
+ * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */

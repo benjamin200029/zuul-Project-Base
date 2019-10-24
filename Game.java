@@ -10,12 +10,15 @@
  *  This main class creates and initialises all the others: it creates all
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
+ *  
+ * @author Benjamin Adelson and Erik Cooke
+ * @version 2019.10.21
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
 
-public class Game 
+public class Game
 {
     private Parser parser;
     private Room currentRoom;
@@ -35,26 +38,35 @@ public class Game
     private void createRooms()
     {
         // new rooms created after office
-        Room outside, theater, studentCenter, computerLab, office, sciLab, guidance,artCenter,
-        gym,library, parkingLot1,parkingLot2,sciCenter,cafeteria,collegeCenter;
+        Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
+        gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
+        
+        Item flashlight, textbook;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
+        theater = new Room("in a Lecture Theater");
         studentCenter = new Room("in the Student Center");
-        computerLab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        computerLab = new Room("in a Computing Lab");
+        office = new Room("in the Computing Admin Office");
         sciLab = new Room("in the Science lab");
-        guidance = new Room("in the TutoringCenter");
+        guidance = new Room("in the Guidance Center");
         artCenter = new Room("in the arts center");
         gym = new Room("in the Gym");
-        library = new Room("in the library");
-        parkingLot1 = new Room("You are in the Northern parking lot");
-        parkingLot2 = new Room("You are in the Southern parking lot");
-        sciCenter = new Room("You are in the Science Center");
-        cafeteria = new Room("You are in the Cafeteria");
-        collegeCenter = new Room("You are in the College Center");
+        library = new Room("in the Library");
+        parkingLot1 = new Room("in the Northern parking lot");
+        parkingLot2 = new Room("in the Southern parking lot");
+        sciCenter = new Room("in the Science Center");
+        cafeteria = new Room("in the Cafeteria");
+        collegeCenter = new Room("in the College Center");
         
+        // create items
+        flashlight = new Item("Flashlight", 0.5);
+        textbook = new Item("Textbook", 1.0);
+        
+        // add items to rooms
+        outside.addItem(flashlight);
+        outside.addItem(textbook);
         
         // initialise room exits
         outside.setExit("north", parkingLot1);
@@ -105,7 +117,7 @@ public class Game
     
     /**
      * Main method
-     * @param args 
+     * @param args array of String for passed in arguments
      */
     public static void main(String[] args)
     {
@@ -187,6 +199,14 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+                
+            case LOOK:
+                look();
+                 break;
+                 
+            case EAT:
+                eat();
+                break;
         }
         return wantToQuit;
     }
@@ -253,5 +273,21 @@ public class Game
         else {
             return true;  // signal that we want to quit
         }
+    }
+    
+    /**
+     * Prints the description of the room and the exits.
+     */
+    public void look()
+    {
+        System.out.println(currentRoom.getLongDescription());
+    }
+    
+    /**
+     * The user eats something
+     */
+    public void eat()
+    {
+        System.out.println("I was hungry, that was good.");
     }
 }
