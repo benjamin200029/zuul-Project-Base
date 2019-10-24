@@ -14,19 +14,20 @@ Everyone must
 -DONE-8.14 - add the look command to your game (p 303) 
 
 To earn a C implement the following:
+
 -DONE-8.15 (p 303) - add another command, ie. eat with a simple text response
 
 -DONE-8.16 (p 305) - Streamline printing of available commands
  
 
 To Earn a B, complete the C task and Implement three (3) of the following
--DONE-8.20/8.21 (p 308) - add items to your game. Each room can have one item in it. Items have description and weight. When printing room info, Item should be included
+1-DONE-8.20/8.21 (p 308) - add items to your game. Each room can have one item in it. Items have description and weight. When printing room info, Item should be included
 
--DONE-8.22 (p 308)- make it so rooms can hold multiple items
+2-DONE-8.22 (p 308)- make it so rooms can hold multiple items
 
--DONE-8.23 (p 309,310) - implement the back command (back one room)
+3-DONE-8.23 (p 309,310) - implement the back command (back one room)
 
--DONE-8.26 - implement the go back many rooms version of the command command (back repeatedly retraces your steps)
+4-DONE-8.26 - implement the go back many rooms version of the command command (back repeatedly retraces your steps)
 
 8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented
 
