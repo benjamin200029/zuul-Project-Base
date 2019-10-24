@@ -1,3 +1,5 @@
+
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -22,6 +24,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Stack<Room> roomHistory;
         
     /**
      * Create the game and initialise its internal map.
@@ -30,6 +33,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        roomHistory = new Stack<Room>();
     }
 
     /**
@@ -183,6 +187,10 @@ public class Game
             case EAT:
                 eat();
                 break;
+                
+            case BACK:
+                 goBack(command);
+                 break;
 
             case GO:
                 goRoom(command);
@@ -232,8 +240,11 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            roomHistory.push(currentRoom);
+            enterRoom(nextRoom);
+            
+            //currentRoom = nextRoom;
+            //System.out.println(currentRoom.getLongDescription());
         }
     }
 
@@ -267,5 +278,31 @@ public class Game
     public void eat()
     {
         System.out.println("I was hungry, that was good.");
+    }
+    
+    /**
+     * Enters the selected room and prints the description
+     */
+    private void enterRoom(Room nextRoom){
+        currentRoom = nextRoom;
+        System.out.println(currentRoom.getLongDescription());
+    }
+    
+    /**
+     * Go back to the previous room
+     */
+    public void goBack(Command command)
+    {
+        if(command.hasSecondWord()){
+            System.out.println("Back where?");
+            return;
+        }
+        if (roomHistory.isEmpty()){
+        System.out.println("There are no rooms you can backtrack to.");
+        }
+        else{
+            Room previousRoom = roomHistory.pop();
+            enterRoom(previousRoom);
+        }
     }
 }
