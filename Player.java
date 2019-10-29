@@ -12,8 +12,10 @@ public class Player
     // The current room the player is in
     private Room currentRoom;
     
-    //private Item it = new Item();
-    
+    //starting limit of moves
+    private int moves = 0;
+    //stoping point
+    private int maxMoves = 6;    
 
     /**
      * Constructor for objects of class Player
@@ -29,6 +31,8 @@ public class Player
      * Enter the given room
      */
     public void enterRoom(Room room){
+        
+        moves++;
         currentRoom = room;
     }
     
@@ -39,7 +43,19 @@ public class Player
         return currentRoom;
     }
     
+    /**
+     * Gets the name of the player
+     */
     public String getName(){
         return name;
     }
+    
+    /**
+     * Checks if the player has lost
+     */
+    public boolean gameOver()
+    {
+        return moves > maxMoves;
+    }
+    
 }
