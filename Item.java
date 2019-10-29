@@ -10,14 +10,14 @@ public class Item
     // Name of the item
     private String description;
     // holds how much the item weighs.
-    private double weight;
+    private int weight;
 
     /**
      * Constructor for objects of class Item
      * @param description - descibes the item
      * @param weight - how much does it weigh?
      */
-    public Item(String description, double weight)
+    public Item(String description, int weight)
     {
         this.description = description;
         this.weight = weight;
@@ -38,7 +38,7 @@ public class Item
      * 
      * @return a float of the weight of this item
      */
-    public double getWeight()
+    public int getWeight()
     {
         return weight;
     }
