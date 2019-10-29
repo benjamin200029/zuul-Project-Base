@@ -66,8 +66,8 @@ public class Game
         collegeCenter = new Room("in the College Center");
         
         // create items
-        flashlight = new Item("Flashlight", 0.5);
-        textbook = new Item("Textbook", 1.0);
+        flashlight = new Item("Flashlight", 100);
+        textbook = new Item("Textbook", 300);
         
         // add items to rooms
         outside.addItem(flashlight);

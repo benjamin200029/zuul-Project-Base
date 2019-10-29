@@ -119,20 +119,20 @@ public class Room
         roomItems.remove(oldItem);
     }
     
-    /**
-     * Returns an ArrayList of the items in this room
-     */
-    public ArrayList<Item> getItems()
-    {
-       if(roomItems.isEmpty())
-       {
-           return null;
-       }
-       else
-       {
-           return roomItems;
-       }
-    }
+    // /**
+     // * Returns an ArrayList of the items in this room
+     // */
+    // public ArrayList<Item> getItems()
+    // {
+       // if(roomItems.isEmpty())
+       // {
+           // return null;
+       // }
+       // else
+       // {
+           // return roomItems;
+       // }
+    // }
     
     /**
      * Returns a string of the items in the current room or null if there are no items
