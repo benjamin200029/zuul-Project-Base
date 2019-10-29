@@ -25,22 +25,28 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> roomHistory;
-    //private Player player;
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
-        createRooms();
+        // old code
+        //createRooms();
+        //parser = new Parser();
+        //roomHistory = new Stack<Room>();
+                
+        player = new Player("Steve");
+        Room startRoom = createRooms();
+        player.enterRoom(startRoom); // start at the beginning, which is outside of the college
         parser = new Parser();
-        roomHistory = new Stack<Room>();
     }
 
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createRooms()
+    private Room createRooms()
     {
         // new rooms created after office
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
@@ -118,6 +124,8 @@ public class Game
 
 
         currentRoom = outside;  // start game outside
+        
+        return outside;
     }
     
     /**
@@ -197,6 +205,9 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+                
+            //case TAKE:
+                
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -282,6 +293,14 @@ public class Game
         System.out.println("I was hungry, that was good.");
     }
     
+    /**
+     * Take comman in current room. If the room contains an item,
+     * it works, if not an error will occur.
+     */
+    //private void take(Command command){
+        
+    //}
+   
     /**
      * Enters the selected room and prints the description
      */
