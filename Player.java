@@ -30,8 +30,7 @@ public class Player
     /**
      * Enter the given room
      */
-    public void enterRoom(Room room){
-        
+    public void enterRoom(Room room){        
         moves++;
         currentRoom = room;
     }
