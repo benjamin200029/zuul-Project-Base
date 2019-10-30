@@ -28,6 +28,7 @@ public class Room
     public Room eastExit;
     public Room westExit;
     
+    //Stores items in this room
     private ArrayList<Item> roomItems;
     
     /**
@@ -145,10 +146,10 @@ public class Room
         }
         else
         {
-            String returnItems = "Items: Weight:\n";
+            String returnItems = "Item(s) at this location.\n";
             for(Item item : roomItems)
             {
-                returnItems += item.getDescription() + " " + item.getWeight() + "\n";
+                returnItems += item.getLongDescription() + "\n";
             }
             return returnItems;
         }
