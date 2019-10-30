@@ -58,8 +58,7 @@ public class Item
     
     /**
      * Returns a description of the item in form:
-     *   Item: Flashlight, a small flashlight with batteries
-     *   Weight: 100
+     *   Flashlight-a small flashlight with batteries, 100
      */
     public String getLongDescription()
     {
