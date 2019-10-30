@@ -52,7 +52,7 @@ public class Game
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
         
-        Item granolabar, textbook, apple;
+        Item flashlight, textbook;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -72,14 +72,12 @@ public class Game
         collegeCenter = new Room("in the College Center");
         
         // create items
-        granolabar = new Item("Granola Bar","Chocolate & peanut butter goodness", 100);
+        flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
         textbook = new Item("Textbook", "Object Oriented Programming", 300);
-        apple = new Item("Apple", "Honey Crisp is super sweet", 50);
         
         // add items to rooms
-        parkingLot1.addItem(granolabar);
+        outside.addItem(flashlight);
         outside.addItem(textbook);
-        cafeteria.addItem(apple);
         
         // initialise room exits
         outside.setExit("north", parkingLot1);
@@ -154,8 +152,16 @@ public class Game
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
+            if(player.gameOver()){
+            printGameOver();
+            finished = true;
+            }
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    
+    private void printGameOver(){
+        System.out.println("You are out of time, campus is closed!");
     }
 
     /**
@@ -255,11 +261,12 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
-            roomHistory.push(currentRoom);
-            enterRoom(nextRoom);
+            //roomHistory.push(currentRoom);
+            
+            player.enterRoom(nextRoom);
             
             //currentRoom = nextRoom;
-            //System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getLongDescription());
         }
     }
 
@@ -296,12 +303,14 @@ public class Game
     }
     
     /**
-     * Take comman in current room. If the room contains an item,
+     * Take item in current room. If the room contains an item,
      * it works, if not an error will occur.
+     * (Not complete)
      */
-    //private void take(Command command){
-        
-    //}
+    private void take(Command command){
+        System.out.println("What Item do you want to take?");
+
+    }
    
     /**
      * Enters the selected room and prints the description
