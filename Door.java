@@ -55,6 +55,22 @@ public class Door
         }
         return !locked;
     }
+    
+    public Room open(Room fromRoom)
+    {
+        if(locked){
+            return null;
+        }
+        if(fromRoom == area1){
+            return area2;
+        }
+        else if (fromRoom == area2){
+            return area1;
+        }
+        else {
+            return null;
+        }
+    }
 
    
 }

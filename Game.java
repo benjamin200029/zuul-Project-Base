@@ -52,7 +52,7 @@ public class Game
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
         
-        Item flashlight, textbook;
+        Item flashlight, textbook,key;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -74,10 +74,13 @@ public class Game
         // create items
         flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
         textbook = new Item("Textbook", "Object Oriented Programming", 300);
-        
+        key = new Item("Key", "Opens Office", 1);
         // add items to rooms
         outside.addItem(flashlight);
         outside.addItem(textbook);
+        //create a key item
+        //guidance.addItem(key);
+
         
         // initialise room exits
         outside.setExit("north", parkingLot1);
@@ -109,10 +112,14 @@ public class Game
         library.setExit("east",sciCenter);
         library.setExit("up",guidance);
         
-        guidance.setExit("up",office);
+       // guidance.setExit("up",office);
+        new Door(office,"up",guidance,"down",null);
+
         guidance.setExit("down",library);
         
-        office.setExit("down", guidance);
+        //office.setExit("down", guidance);
+        new Door(guidance,"down",office,"up",key);
+
         
         sciCenter.setExit("west",library);
         sciCenter.setExit("east",sciLab);
@@ -256,13 +263,13 @@ public class Game
 
         // Try to leave current room.
         Room nextRoom = player.getCurrentRoom().getExit(direction);
+        Door door = player.getCurrentRoom().getDoor(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
             //roomHistory.push(currentRoom);
-            
             player.enterRoom(nextRoom);
             
             //currentRoom = nextRoom;

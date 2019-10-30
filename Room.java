@@ -115,6 +115,17 @@ public class Room
     }
     
     /**
+     * Return the room that is reached if we go from this room in direction with  door
+     * "direction". If there is no room in that direction, return null.
+     * @param direction The exit's direction.
+     * @return The room in the given direction.
+     */
+    public Door getDoor(String direction) 
+    {
+        return doors.get(direction);
+    }
+    
+    /**
      * Adds and item to this room
      * 
      * @param newItem The new item to be added to this room
