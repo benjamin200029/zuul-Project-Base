@@ -25,21 +25,28 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> roomHistory;
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
-        createRooms();
+        // old code
+        //createRooms();
+        //parser = new Parser();
+        //roomHistory = new Stack<Room>();
+                
+        player = new Player("Steve");
+        Room startRoom = createRooms();
+        player.enterRoom(startRoom); // start at the beginning, which is outside of the college
         parser = new Parser();
-        roomHistory = new Stack<Room>();
     }
 
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createRooms()
+    private Room createRooms()
     {
         // new rooms created after office
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
@@ -119,6 +126,8 @@ public class Game
 
 
         currentRoom = outside;  // start game outside
+        
+        return outside;
     }
     
     /**
@@ -145,8 +154,16 @@ public class Game
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
+            if(player.gameOver()){
+            printGameOver();
+            finished = true;
+            }
         }
         System.out.println("Thank you for playing.  Good bye.");
+    }
+    
+    private void printGameOver(){
+        System.out.println("You are out of time, campus is closed!");
     }
 
     /**
@@ -198,6 +215,9 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+                
+            //case TAKE:
+                
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -243,11 +263,12 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
-            roomHistory.push(currentRoom);
-            enterRoom(nextRoom);
+            //roomHistory.push(currentRoom);
+            
+            player.enterRoom(nextRoom);
             
             //currentRoom = nextRoom;
-            //System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getLongDescription());
         }
     }
 
@@ -283,6 +304,16 @@ public class Game
         System.out.println("I was hungry, that was good.");
     }
     
+    /**
+     * Take item in current room. If the room contains an item,
+     * it works, if not an error will occur.
+     * (Not complete)
+     */
+    private void take(Command command){
+        System.out.println("What Item do you want to take?");
+
+    }
+   
     /**
      * Enters the selected room and prints the description
      */
