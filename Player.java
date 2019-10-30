@@ -15,7 +15,7 @@ public class Player
     //starting limit of moves
     private int moves = 0;
     //stoping point
-    private int maxMoves = 6;    
+    private int maxMoves = 15;    
 
     /**
      * Constructor for objects of class Player

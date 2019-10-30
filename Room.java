@@ -20,7 +20,9 @@ import java.util.ArrayList;
 public class Room 
 {
     private String description;
-    private HashMap<String, Room> exits;   
+    private HashMap<String, Room> exits;
+    private HashMap<String, Door> doors;   
+
     // stores exits of this room.
         
     public Room northExit;
@@ -41,6 +43,7 @@ public class Room
     {
         this.description = description;
         exits = new HashMap<>();
+        doors = new HashMap<>();
         roomItems = new ArrayList<Item>(5);
     }
 
@@ -52,6 +55,17 @@ public class Room
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
+    }
+    
+    /**
+     * Define an exit from this room with a door.
+     * @param direction The direction of the exit.
+     * @param door  The room to which the exit with the door leads.
+     */
+    
+    public void setDoor(String direction, Door door) 
+    {
+        doors.put(direction, door);
     }
 
     /**
