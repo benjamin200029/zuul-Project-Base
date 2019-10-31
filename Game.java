@@ -52,7 +52,7 @@ public class Game
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
         
-        Item flashlight, textbook,key;
+        Item flashlight, textbook, apple, key;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -74,10 +74,18 @@ public class Game
         // create items
         flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
         textbook = new Item("Textbook", "Object Oriented Programming", 300);
+        apple = new Item("Apple", "Red and juicy", 100);
+                
         key = new Item("Key", "Opens Office", 1);
         // add items to rooms
         outside.addItem(flashlight);
         outside.addItem(textbook);
+        parkingLot1.addItem(apple);
+        cafeteria.addItem(apple);
+        cafeteria.addItem(apple);
+        cafeteria.addItem(apple);
+        collegeCenter.addItem(apple);
+        
         //create a key item
         //guidance.addItem(key);
 
