@@ -65,6 +65,30 @@ public class Player
     }
     
     /**
+     * Goes through the door in the given direction
+     * if correct, will return true, if false, 
+     * there is no door or it is lcoked and need a key
+     */
+    
+    public boolean access(String direction){
+        Door door = currentRoom.getDoor(direction);
+        if(door == null){
+            return false;
+        }
+        Room nextRoom = door.open(currentRoom);
+        
+        nextRoom = door.open(currentRoom);
+        if(nextRoom != null){
+            enterRoom(nextRoom);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    
+    /**
      * Gets the location of the player
      */
     public Room getCurrentRoom(){
@@ -247,5 +271,12 @@ public class Player
             itemsList += "-" + item.getLongDescription() + "\n";
         }
         return itemsList;
+    }
+    
+    public String getLongDescription(){
+        String returnString = currentRoom.getLongDescription();
+        returnString += "\n" + listItems();
+        return returnString;
+        
     }
 }

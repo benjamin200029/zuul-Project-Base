@@ -85,7 +85,10 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString() + "\n" + getItemString();
+        //old code
+        //return "You are " + description + ".\n" + getExitString() + "\n" + getItemString();
+        return "You are " + description + ".\n" + getDoorString() + "\n" + getItemString();
+
     }
 
     /**
@@ -99,6 +102,21 @@ public class Room
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
             returnString += " " + exit;
+        }
+        return returnString;
+    }
+    
+    /**
+     * Return a string describing the room's exits, for example
+     * "Exits: north west".
+     * @return Details of the room's exits.
+     */
+    private String getDoorString()
+    {
+        String returnString = "Door Exits:";
+        Set<String> keys = doors.keySet();
+        for(String door : keys) {
+            returnString += " " + door;
         }
         return returnString;
     }
