@@ -230,8 +230,9 @@ public class Game
                 goRoom(command);
                 break;
                 
-            //case TAKE:
-                
+            case TAKE:
+                takeItem(command);
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -285,6 +286,18 @@ public class Game
             //System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
             look();
         }
+    }
+    
+    public void takeItem(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Take what?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        
+        player.takeItem(itemName);
     }
 
     /** 
