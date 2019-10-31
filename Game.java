@@ -233,6 +233,10 @@ public class Game
             case TAKE:
                 takeItem(command);
                 break;
+                
+            case DROP:
+                dropItem(command);
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -288,16 +292,35 @@ public class Game
         }
     }
     
-    public void takeItem(Command command)
+    /**
+     * Picks up an item from the room if it is there.
+     * @param command : what item to take?
+     * 
+     */
+    private void takeItem(Command command)
     {
         if(!command.hasSecondWord())
         {
             System.out.println("Take what?");
             return;
         }
-        String itemName = command.getSecondWord();
-        
+        String itemName = command.getSecondWord();        
         player.takeItem(itemName);
+    }
+    
+    /**
+     * Drops an item from players item list into current room
+     * @param command : What item to drop?
+     */
+    private void dropItem(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Drop what?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        player.dropItem(itemName);
     }
 
     /** 

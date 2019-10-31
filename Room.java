@@ -165,15 +165,6 @@ public class Room
         }
     }
     
-    // /**
-     // * Checks if an Item is in this Room
-     // * @param itemFind : Item to search for in this room
-     // */
-    // public boolean containsItem(Item itemFind)
-    // {
-        // return roomItems.contains(itemFind);
-    // }
-    
     public Item containsItem(String itemFind)
     {
         int index = 0;
