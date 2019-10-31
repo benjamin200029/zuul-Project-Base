@@ -1,5 +1,5 @@
 
-import java.util.Stack;
+//import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -24,7 +24,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Stack<Room> roomHistory;
+    //private Stack<Room> roomHistory;
     private Player player;
         
     /**
@@ -39,7 +39,7 @@ public class Game
                 
         player = new Player("Steve");
         Room startRoom = createRooms();
-        player.enterRoom(startRoom); // start at the beginning, which is outside of the college
+        player.startRoom(startRoom); // start at the beginning, which is outside of the college
         parser = new Parser();
     }
 
@@ -217,8 +217,14 @@ public class Game
                 break;
                 
             case BACK:
-                 goBack(command);
-                 break;
+                if(command.hasSecondWord())
+                {
+                    System.out.println("Back where?");
+                    break;
+                }
+                player.goBack();
+                look();
+                break;
 
             case GO:
                 goRoom(command);
@@ -323,21 +329,21 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
     
-    /**
-     * Go back to the previous room
-     */
-    public void goBack(Command command)
-    {
-        if(command.hasSecondWord()){
-            System.out.println("Back where?");
-            return;
-        }
-        if (roomHistory.isEmpty()){
-        System.out.println("There are no rooms you can backtrack to.");
-        }
-        else{
-            Room previousRoom = roomHistory.pop();
-            enterRoom(previousRoom);
-        }
-    }
+    // /**
+     // * Go back to the previous room
+     // */
+    // public void goBack(Command command)
+    // {
+        // if(command.hasSecondWord()){
+            // System.out.println("Back where?");
+            // return;
+        // }
+        // if (roomHistory.isEmpty()){
+        // System.out.println("There are no rooms you can backtrack to.");
+        // }
+        // else{
+            // Room previousRoom = roomHistory.pop();
+            // enterRoom(previousRoom);
+        // }
+    // }
 }

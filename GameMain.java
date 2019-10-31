@@ -6,7 +6,7 @@
  */
 public class GameMain
 {
-    Game game;
+    //Game game;
 
     // /**
      // * Constructor for objects of class GameMain
