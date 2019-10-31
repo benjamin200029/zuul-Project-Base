@@ -136,16 +136,6 @@ public class Game
     }
     
     /**
-     * Main method
-     * @param args array of String for passed in arguments
-     */
-    public static void main(String[] args)
-    {
-        Game myGame = new Game();
-        myGame.play();
-    }
-    
-    /**
      *  Main play routine.  Loops until end of play.
      */
     public void play() 
@@ -174,7 +164,7 @@ public class Game
     private void printGameOver(){
         System.out.println("You are out of time, campus is closed!");
     }
-    
+  
     /**
      * Prints starved message
      */
