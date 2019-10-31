@@ -42,7 +42,7 @@ These are the fun ones
 
 DONE-Time limit
 
--one way trap door
+Done-one way trap door
 
 -charged transporter (beamer)
 
