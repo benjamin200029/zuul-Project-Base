@@ -1,4 +1,4 @@
-
+import java.util.Stack;
 /**
  * represenation of the player in the game Zuul
  *
@@ -11,6 +11,8 @@ public class Player
     private String name;
     // The current room the player is in
     private Room currentRoom;
+    // room history tracker
+    private Stack<Room> roomHistory;
     
     //starting limit of moves
     private int moves = 0;
@@ -21,6 +23,8 @@ public class Player
     private int maxHunger;
     // current hunger value
     private int currentHunger;
+    // how much to change currentHunger each move
+    private int hungerChange;
 
     /**
      * Constructor for objects of class Player
@@ -31,6 +35,15 @@ public class Player
         this.name = name;
         maxHunger = 100;
         currentHunger = 110;
+        hungerChange = -10;
+        roomHistory = new Stack<Room>();
+    }
+    
+    public void startRoom(Room room)
+    {
+        moves++;
+        currentHunger += hungerChange;
+        currentRoom = room;
     }
     
     /**
@@ -38,8 +51,9 @@ public class Player
      */
     public void enterRoom(Room room){        
         moves++;
-        currentHunger -= 10;
-        currentRoom = room;
+        currentHunger += hungerChange;
+        roomHistory.push(currentRoom);
+        currentRoom = room;        
     }
     
     /**
@@ -115,5 +129,21 @@ public class Player
             currentHunger = maxHunger;
         }
         return "Yum Yum Yum, that was good. Current Hunger is: " + currentHunger + "/" + maxHunger;
+    }
+    
+    /**
+     * Moves player to previous room(s).
+     */
+    public void goBack()
+    {
+        if(roomHistory.isEmpty())
+        {
+            System.out.println("There are no rooms you can backtrack to.\n");
+        }
+        else
+        {
+            Room previousRoom = roomHistory.pop();
+            startRoom(previousRoom);
+        }
     }
 }
