@@ -50,7 +50,7 @@ public class Game
     {
         // new rooms created after office
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
-        gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
+        gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
         Item flashlight, textbook,key;
       
@@ -70,6 +70,7 @@ public class Game
         sciCenter = new Room("in the Science Center");
         cafeteria = new Room("in the Cafeteria");
         collegeCenter = new Room("in the College Center");
+        offCampus = new Room("off campus and heading home (type back to escape)");
         
         // create items
         flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
@@ -87,6 +88,8 @@ public class Game
         new Door(outside,"north",parkingLot1,"south",null);
         new Door(outside,"south",parkingLot2,"north",null);
         new Door(outside,"east",collegeCenter,"west",null);
+        
+        new Door(parkingLot1,"east",offCampus,"",null);
         
         new Door(collegeCenter,"north",artCenter,"south",null);
         new Door(collegeCenter,"south",library,"north",null);
