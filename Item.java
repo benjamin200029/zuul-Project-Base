@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Class Item - an item in an adventure game.
@@ -13,6 +15,9 @@ public class Item
     private String description;
     // holds how much the item weighs.
     private int weight;
+    
+    //location of the item key
+    private HashMap<String, Item> items;
 
     /**
      * Constructor for objects of class Item
@@ -24,6 +29,18 @@ public class Item
         this.name = name;
         this.description = description;
         this.weight = weight;
+        items = new HashMap<String,Item>();
+
+    }
+    
+    /**
+     * Returns an Iterator over the items
+     * @return a Iterator
+     */
+    
+    public Iterator<Item> iterator()
+    {
+        return items.values().iterator();
     }
 
     /**

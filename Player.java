@@ -1,5 +1,6 @@
 import java.util.Stack;
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * represenation of the player in the game Zuul
  *
@@ -65,7 +66,7 @@ public class Player
     }
     
     /**
-     * Goes through the door in the given direction
+     * Access the door in the given direction
      * if correct, will return true, if false, 
      * there is no door or it is lcoked and need a key
      */
@@ -80,6 +81,9 @@ public class Player
         nextRoom = door.open(currentRoom);
         if(nextRoom != null){
             enterRoom(nextRoom);
+            //tryed this attempt but facing errors
+            //Iterator iter = Item.iterator();
+            //while(iter.hasNext() && !door.unlock((Item) iter.next())); 
             return true;
         }
         else{
