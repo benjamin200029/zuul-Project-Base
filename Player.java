@@ -15,7 +15,12 @@ public class Player
     //starting limit of moves
     private int moves = 0;
     //stoping point
-    private int maxMoves = 15;    
+    private int maxMoves = 15;
+    
+    // maximum hunger value
+    private int maxHunger;
+    // current hunger value
+    private int currentHunger;
 
     /**
      * Constructor for objects of class Player
@@ -24,14 +29,16 @@ public class Player
     public Player(String name)
     {
         this.name = name;
+        maxHunger = 100;
+        currentHunger = 110;
     }
-
     
     /**
      * Enter the given room
      */
     public void enterRoom(Room room){        
         moves++;
+        currentHunger -= 10;
         currentRoom = room;
     }
     
@@ -57,4 +64,45 @@ public class Player
         return moves > maxMoves;
     }
     
+    /**
+     * Returns the maximum hunger level for player
+     * @return Maximum hunger level
+     */
+    public int getMaxHunger()
+    {
+        return maxHunger;
+    }
+    
+    /**
+     * Returns the current hunger level.
+     * @return The current hunger level.
+     */
+    public int getCurrentHunger()
+    {
+        return currentHunger;
+    }
+    
+    /**
+     * Returns the current hunger level like this:
+     * Current hunger level: 50/100
+     * @return String of the current hunger level
+     */
+    public String getHunger()
+    {
+        return "Current hunger level: " + currentHunger + "/" + maxHunger;
+    }
+    
+    /**
+     * The player has eaten something.
+     * 
+     */
+    public String eat()
+    {
+        currentHunger += 20;
+        if(currentHunger > maxHunger)
+        {
+            currentHunger = maxHunger;
+        }
+        return "Yum Yum Yum, that was good. Current Hunger is: " + currentHunger + "/" + maxHunger;
+    }
 }

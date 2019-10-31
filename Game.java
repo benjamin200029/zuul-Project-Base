@@ -181,7 +181,8 @@ public class Game
         System.out.println("College of Raritan is a new, incredibly boring educational game that gives you a simulation actully being in college.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        //System.out.println(currentRoom.getLongDescription());
+        look();
     }
 
     /**
@@ -210,7 +211,7 @@ public class Game
                 break;
                 
             case EAT:
-                eat();
+                System.out.println(player.eat());
                 break;
                 
             case BACK:
@@ -273,7 +274,8 @@ public class Game
             player.enterRoom(nextRoom);
             
             //currentRoom = nextRoom;
-            System.out.println(player.getCurrentRoom().getLongDescription());
+            //System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
+            look();
         }
     }
 
@@ -298,15 +300,7 @@ public class Game
      */
     public void look()
     {
-        System.out.println(player.getCurrentRoom().getLongDescription());
-    }
-    
-    /**
-     * The user eats something
-     */
-    public void eat()
-    {
-        System.out.println("I was hungry, that was good.");
+        System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
     }
     
     /**
