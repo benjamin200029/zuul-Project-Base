@@ -58,11 +58,22 @@ public class Player
     
     /**
      * Checks if the player has lost
+     * @return Boolean
      */
     public boolean gameOver()
     {
-        return moves > maxMoves;
+         return moves > maxMoves;
     }
+    
+    /**
+     * Checks if the player has staved to death
+     * @return Boolean
+     */
+    public boolean starved()
+    {
+        return currentHunger <= 0;
+    }
+    
     
     /**
      * Returns the maximum hunger level for player
@@ -87,7 +98,7 @@ public class Player
      * Current hunger level: 50/100
      * @return String of the current hunger level
      */
-    public String getHunger()
+    public String toStringHunger()
     {
         return "Current hunger level: " + currentHunger + "/" + maxHunger;
     }
