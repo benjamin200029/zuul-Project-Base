@@ -54,7 +54,7 @@ These are the fun ones
 
 -make npc's move 
 
--rudimentary health system
+Erik-starting to work on a hunger system-rudimentary health system
 
 If you want to add a feature other than these, please e-mail or talk to me. IF it is risky I will ask you to branch your code so I can give credit for the attempt, and if you succeed you can merge your branch back to the main code base. 
 
