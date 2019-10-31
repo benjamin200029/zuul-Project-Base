@@ -145,21 +145,6 @@ public class Room
         roomItems.remove(oldItem);
     }
     
-    // /**
-     // * Returns an ArrayList of the items in this room
-     // */
-    // public ArrayList<Item> getItems()
-    // {
-       // if(roomItems.isEmpty())
-       // {
-           // return null;
-       // }
-       // else
-       // {
-           // return roomItems;
-       // }
-    // }
-    
     /**
      * Returns a string of the items in the current room or null if there are no items
      */
@@ -174,10 +159,26 @@ public class Room
             String returnItems = "Item(s) at this location.\n";
             for(Item item : roomItems)
             {
-                returnItems += item.getLongDescription() + "\n";
+                returnItems += "-" + item.getLongDescription() + "\n";
             }
             return returnItems;
         }
+    }
+    
+    public Item containsItem(String itemFind)
+    {
+        int index = 0;
+        Item search;
+        while(index < roomItems.size())
+        {
+            search = roomItems.get(index);
+            if(itemFind.equals(search.getName()))
+            {
+                return search;
+            }
+            index++;
+        }
+        return null;
     }
 }
 

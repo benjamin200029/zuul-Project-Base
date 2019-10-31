@@ -35,18 +35,18 @@ To Earn a B, complete the C task and Implement three (3) of the following
 
 4-DONE-8.26 - implement the go back many rooms version of the command command (back repeatedly retraces your steps)
 
-8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented
+5-DONE-8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented
 
 To Earn an A, complete the B task and Implement three (3) of the following
 These are the fun ones
 
--Time limit
+DONE-Time limit
 
 -one way trap door
 
 -charged transporter (beamer)
 
--locked doors and keys
+Benjamin working-locked doors and keys
 
 -random transporter (discuss with others about implementation)
 
@@ -54,7 +54,7 @@ These are the fun ones
 
 -make npc's move 
 
--rudimentary health system
+DONE-rudimentary health system
 
 If you want to add a feature other than these, please e-mail or talk to me. IF it is risky I will ask you to branch your code so I can give credit for the attempt, and if you succeed you can merge your branch back to the main code base. 
 

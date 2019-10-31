@@ -1,5 +1,5 @@
 
-import java.util.Stack;
+//import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -24,7 +24,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Stack<Room> roomHistory;
+    //private Stack<Room> roomHistory;
     private Player player;
         
     /**
@@ -39,7 +39,7 @@ public class Game
                 
         player = new Player("Steve");
         Room startRoom = createRooms();
-        player.enterRoom(startRoom); // start at the beginning, which is outside of the college
+        player.startRoom(startRoom); // start at the beginning, which is outside of the college
         parser = new Parser();
     }
 
@@ -136,16 +136,6 @@ public class Game
     }
     
     /**
-     * Main method
-     * @param args array of String for passed in arguments
-     */
-    public static void main(String[] args)
-    {
-        Game myGame = new Game();
-        myGame.play();
-    }
-    
-    /**
      *  Main play routine.  Loops until end of play.
      */
     public void play() 
@@ -160,15 +150,27 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
             if(player.gameOver()){
-            printGameOver();
-            finished = true;
+                printGameOver();
+                finished = true;
+            }
+            if(player.starved()){
+                printStarved();
+                finished = true;
             }
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("\nThank you for playing.  Good bye.");
     }
     
     private void printGameOver(){
         System.out.println("You are out of time, campus is closed!");
+    }
+  
+    /**
+     * Prints starved message
+     */
+    private void printStarved()
+    {
+        System.out.println("You have starved to death!");
     }
 
     /**
@@ -181,7 +183,8 @@ public class Game
         System.out.println("College of Raritan is a new, incredibly boring educational game that gives you a simulation actully being in college.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        //System.out.println(currentRoom.getLongDescription());
+        look();
     }
 
     /**
@@ -210,19 +213,34 @@ public class Game
                 break;
                 
             case EAT:
-                eat();
+                System.out.println(player.eat());
                 break;
                 
             case BACK:
-                 goBack(command);
-                 break;
+                if(command.hasSecondWord())
+                {
+                    System.out.println("Back where?");
+                    break;
+                }
+                player.goBack();
+                look();
+                break;
 
             case GO:
                 goRoom(command);
                 break;
                 
-            //case TAKE:
+            case TAKE:
+                takeItem(command);
+                break;
                 
+            case DROP:
+                dropItem(command);
+                break;
+                
+            case ITEMS:
+                listPlayerItems();
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -273,8 +291,40 @@ public class Game
             player.enterRoom(nextRoom);
             
             //currentRoom = nextRoom;
-            System.out.println(player.getCurrentRoom().getLongDescription());
+            //System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
+            look();
         }
+    }
+    
+    /**
+     * Picks up an item from the room if it is there.
+     * @param command : what item to take?
+     * 
+     */
+    private void takeItem(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Take what?");
+            return;
+        }
+        String itemName = command.getSecondWord();        
+        player.takeItem(itemName);
+    }
+    
+    /**
+     * Drops an item from players item list into current room
+     * @param command : What item to drop?
+     */
+    private void dropItem(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Drop what?");
+            return;
+        }
+        String itemName = command.getSecondWord();
+        player.dropItem(itemName);
     }
 
     /** 
@@ -296,27 +346,28 @@ public class Game
     /**
      * Prints the description of the room and the exits.
      */
-    public void look()
+    private void look()
     {
-        System.out.println(player.getCurrentRoom().getLongDescription());
+        System.out.println(player.getCurrentRoom().getLongDescription() +
+        player.toStringHunger() + player.toStringMoves());
     }
     
-    /**
-     * The user eats something
-     */
-    public void eat()
-    {
-        System.out.println("I was hungry, that was good.");
-    }
-    
-    /**
-     * Take item in current room. If the room contains an item,
-     * it works, if not an error will occur.
-     * (Not complete)
-     */
-    private void take(Command command){
-        System.out.println("What Item do you want to take?");
+    // /**
+     // * Take item in current room. If the room contains an item,
+     // * it works, if not an error will occur.
+     // * (Not complete)
+     // */
+    // private void take(Command command){
+        // System.out.println("What Item do you want to take?");
 
+    // }
+    
+    /**
+     * List the items the player is carrying
+     */
+    private void listPlayerItems()
+    {
+        System.out.println(player.listItems());
     }
    
     /**
@@ -325,23 +376,5 @@ public class Game
     private void enterRoom(Room nextRoom){
         currentRoom = nextRoom;
         System.out.println(currentRoom.getLongDescription());
-    }
-    
-    /**
-     * Go back to the previous room
-     */
-    public void goBack(Command command)
-    {
-        if(command.hasSecondWord()){
-            System.out.println("Back where?");
-            return;
-        }
-        if (roomHistory.isEmpty()){
-        System.out.println("There are no rooms you can backtrack to.");
-        }
-        else{
-            Room previousRoom = roomHistory.pop();
-            enterRoom(previousRoom);
-        }
     }
 }
