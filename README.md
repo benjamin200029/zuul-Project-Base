@@ -35,7 +35,7 @@ To Earn a B, complete the C task and Implement three (3) of the following
 
 4-DONE-8.26 - implement the go back many rooms version of the command command (back repeatedly retraces your steps)
 
-8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented
+5-DONE-8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented
 
 To Earn an A, complete the B task and Implement three (3) of the following
 These are the fun ones
