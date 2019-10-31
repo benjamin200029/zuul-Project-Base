@@ -40,7 +40,7 @@ To Earn a B, complete the C task and Implement three (3) of the following
 To Earn an A, complete the B task and Implement three (3) of the following
 These are the fun ones
 
--Time limit
+DONE-Time limit
 
 -one way trap door
 
@@ -54,7 +54,7 @@ These are the fun ones
 
 -make npc's move 
 
-Erik-starting to work on a hunger system-rudimentary health system
+DONE-rudimentary health system
 
 If you want to add a feature other than these, please e-mail or talk to me. IF it is risky I will ask you to branch your code so I can give credit for the attempt, and if you succeed you can merge your branch back to the main code base. 
 
