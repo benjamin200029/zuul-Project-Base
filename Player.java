@@ -176,9 +176,18 @@ public class Player
      * Add an item to the players item list
      * @param newItem : Item to be added to list
      */
-    public void addItem(Item newItem)
+    private void addItem(Item newItem)
     {
         playerItems.add(newItem);
+    }
+    
+    /**
+     * Removes and item from the players item list
+     * @param itemDrop : the item to be removed
+     */
+    private void removeItem(Item itemDrop)
+    {
+        playerItems.remove(itemDrop);
     }
     
     /**
@@ -198,5 +207,28 @@ public class Player
         {
             System.out.println("This location does not have that item");
         }
+    }
+    
+    /**
+     * Drops an item from the players item list
+     * @param itemDrop : item name to be dropped
+     */
+    public void dropItem(String itemDrop)
+    {
+        int index = 0;
+        Item tempItem;
+        while(index < playerItems.size())
+        {
+            tempItem = playerItems.get(index);
+            if(itemDrop.equals(tempItem.getName()))
+            {
+                removeItem(tempItem);
+                currentRoom.addItem(tempItem);
+                System.out.println("You dropped the " + itemDrop);
+                return;
+            }
+            index++;
+        }
+        System.out.println("You do not have that item");
     }
 }
