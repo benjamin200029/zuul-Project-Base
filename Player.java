@@ -1,4 +1,5 @@
 import java.util.Stack;
+import java.util.ArrayList;
 /**
  * represenation of the player in the game Zuul
  *
@@ -16,7 +17,7 @@ public class Player
     
     //starting limit of moves
     private int moves = 0;
-    //stoping point
+    //stopping point
     private int maxMoves = 15;
     
     // maximum hunger value
@@ -25,6 +26,9 @@ public class Player
     private int currentHunger;
     // how much to change currentHunger each move
     private int hungerChange;
+    
+    // holder for player items
+    private ArrayList<Item> playerItems;
 
     /**
      * Constructor for objects of class Player
@@ -37,6 +41,7 @@ public class Player
         currentHunger = 100;
         hungerChange = -10;
         roomHistory = new Stack<Room>();
+        playerItems = new ArrayList<Item>();
     }
     
     /**
@@ -164,6 +169,34 @@ public class Player
             moves ++;
             currentHunger += hungerChange;
             //currentRoom = previousRoom;
+        }
+    }
+    
+    /**
+     * Add an item to the players item list
+     * @param newItem : Item to be added to list
+     */
+    public void addItem(Item newItem)
+    {
+        playerItems.add(newItem);
+    }
+    
+    /**
+     * Pickup an Item from a Room.
+     * @param Item : Item to be picked up
+     */
+    public void takeItem(String newItem)
+    {
+        Item tempItem = currentRoom.containsItem(newItem);
+        if(tempItem != null)
+        {
+            addItem(tempItem);
+            currentRoom.removeItem(tempItem);
+            System.out.println("You picked up the " + tempItem.getName());
+        }
+        else
+        {
+            System.out.println("This location does not have that item");
         }
     }
 }
