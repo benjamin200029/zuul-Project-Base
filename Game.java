@@ -308,7 +308,8 @@ public class Game
      */
     public void look()
     {
-        System.out.println(player.getCurrentRoom().getLongDescription() + player.toStringHunger());
+        System.out.println(player.getCurrentRoom().getLongDescription() +
+        player.toStringHunger() + player.toStringMoves());
     }
     
     /**
