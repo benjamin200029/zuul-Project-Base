@@ -231,4 +231,21 @@ public class Player
         }
         System.out.println("You do not have that item");
     }
+    
+    /**
+     * Prints out a list of the items the player is holding
+     */
+    public String listItems()
+    {
+        if(playerItems.isEmpty())
+        {
+            return "You are not carrying any items";
+        }
+        String itemsList = "You are carrying:\n";
+        for(Item item : playerItems)
+        {
+            itemsList += "-" + item.getLongDescription() + "\n";
+        }
+        return itemsList;
+    }
 }

@@ -237,6 +237,10 @@ public class Game
             case DROP:
                 dropItem(command);
                 break;
+                
+            case ITEMS:
+                listPlayerItems();
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -342,20 +346,28 @@ public class Game
     /**
      * Prints the description of the room and the exits.
      */
-    public void look()
+    private void look()
     {
         System.out.println(player.getCurrentRoom().getLongDescription() +
         player.toStringHunger() + player.toStringMoves());
     }
     
-    /**
-     * Take item in current room. If the room contains an item,
-     * it works, if not an error will occur.
-     * (Not complete)
-     */
-    private void take(Command command){
-        System.out.println("What Item do you want to take?");
+    // /**
+     // * Take item in current room. If the room contains an item,
+     // * it works, if not an error will occur.
+     // * (Not complete)
+     // */
+    // private void take(Command command){
+        // System.out.println("What Item do you want to take?");
 
+    // }
+    
+    /**
+     * List the items the player is carrying
+     */
+    private void listPlayerItems()
+    {
+        System.out.println(player.listItems());
     }
    
     /**
@@ -365,22 +377,4 @@ public class Game
         currentRoom = nextRoom;
         System.out.println(currentRoom.getLongDescription());
     }
-    
-    // /**
-     // * Go back to the previous room
-     // */
-    // public void goBack(Command command)
-    // {
-        // if(command.hasSecondWord()){
-            // System.out.println("Back where?");
-            // return;
-        // }
-        // if (roomHistory.isEmpty()){
-        // System.out.println("There are no rooms you can backtrack to.");
-        // }
-        // else{
-            // Room previousRoom = roomHistory.pop();
-            // enterRoom(previousRoom);
-        // }
-    // }
 }
