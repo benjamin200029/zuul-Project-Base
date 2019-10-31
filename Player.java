@@ -34,20 +34,23 @@ public class Player
     {
         this.name = name;
         maxHunger = 100;
-        currentHunger = 110;
+        currentHunger = 100;
         hungerChange = -10;
         roomHistory = new Stack<Room>();
     }
     
-    public void startRoom(Room room)
+    /**
+     * Enter room for starting game and after player moves back
+     * @param room Room to move into
+     */
+        public void startRoom(Room room)
     {
-        moves++;
-        currentHunger += hungerChange;
         currentRoom = room;
     }
     
     /**
      * Enter the given room
+     * @param room The Room to move into
      */
     public void enterRoom(Room room){        
         moves++;
@@ -118,17 +121,32 @@ public class Player
     }
     
     /**
+     * Returns a string of current moves.
+     * @return current moves made.
+     */
+    public String toStringMoves()
+    {
+        return "\nMoves: " + moves;
+    }
+    
+    /**
      * The player has eaten something.
      * 
      */
     public String eat()
     {
+        if(currentHunger == maxHunger)
+        {
+            return "You are full, stop trying to eat! Current Hunger is: " + 
+                   currentHunger + "/" + maxHunger;
+        }
         currentHunger += 20;
         if(currentHunger > maxHunger)
         {
             currentHunger = maxHunger;
         }
-        return "Yum Yum Yum, that was good. Current Hunger is: " + currentHunger + "/" + maxHunger;
+        return "Yum Yum Yum, that was good. Current Hunger is: " + currentHunger +
+               "/" + maxHunger;
     }
     
     /**
@@ -142,8 +160,10 @@ public class Player
         }
         else
         {
-            Room previousRoom = roomHistory.pop();
-            startRoom(previousRoom);
+            currentRoom = roomHistory.pop();
+            moves ++;
+            currentHunger += hungerChange;
+            //currentRoom = previousRoom;
         }
     }
 }
