@@ -50,7 +50,7 @@ public class Game
     {
         // new rooms created after office
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
-        gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter;
+        gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
         Item flashlight, textbook, apple, key;
       
@@ -70,6 +70,7 @@ public class Game
         sciCenter = new Room("in the Science Center");
         cafeteria = new Room("in the Cafeteria");
         collegeCenter = new Room("in the College Center");
+        offCampus = new Room("off campus and heading home (type back to escape)");
         
         // create items
         flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
@@ -91,56 +92,65 @@ public class Game
 
         
         // initialise room exits
-        outside.setExit("north", parkingLot1);
-        outside.setExit("south", parkingLot2);
-        outside.setExit("east", collegeCenter);
         
-        parkingLot1.setExit("south",outside);
-        parkingLot2.setExit("north",outside);
-
-        collegeCenter.setExit("north", artCenter);
-        collegeCenter.setExit("south", library);
-        collegeCenter.setExit("east", studentCenter);
-        collegeCenter.setExit("west", outside);
+        new Door(outside,"north",parkingLot1,"south",null);
+        new Door(outside,"south",parkingLot2,"north",null);
+        new Door(outside,"east",collegeCenter,"west",null);
         
-        theater.setExit("south",artCenter);
+        new Door(parkingLot1,"east",offCampus,"",null);
         
-        artCenter.setExit("north",theater);
-        artCenter.setExit("south",collegeCenter);
+        new Door(collegeCenter,"north",artCenter,"south",null);
+        new Door(collegeCenter,"south",library,"north",null);
+        new Door(collegeCenter,"east",studentCenter,"west",key);
         
-        studentCenter.setExit("west",collegeCenter);
-        studentCenter.setExit("up",gym);
-        studentCenter.setExit("down",cafeteria);
+        new Door(artCenter,"north",theater,"south",null);
         
-        gym.setExit("down",studentCenter);
+        new Door(studentCenter,"up",gym,"down",null);
+        new Door(studentCenter,"down",cafeteria,"up",null);
         
-        cafeteria.setExit("up",studentCenter);
+        new Door(library,"east",sciCenter,"west",null);
+        new Door(library,"up",guidance,"down",null);
         
-        library.setExit("north",collegeCenter);
-        library.setExit("east",sciCenter);
-        library.setExit("up",guidance);
+        new Door(guidance,"up",office,"down",key);
         
-       // guidance.setExit("up",office);
-        new Door(office,"up",guidance,"down",null);
-
-        guidance.setExit("down",library);
+        new Door(sciCenter,"south",computerLab,"north",null);
+        new Door(sciCenter,"east",sciLab,"west",null);
         
-        //office.setExit("down", guidance);
-        new Door(guidance,"down",office,"up",key);
-
-        
-        sciCenter.setExit("west",library);
-        sciCenter.setExit("east",sciLab);
-        sciCenter.setExit("south",computerLab);
-
-        computerLab.setExit("north", sciCenter);
-        
-        sciLab.setExit("west",sciCenter);
-
-
-        currentRoom = outside;  // start game outside
-        
+        currentRoom = outside;
+        // start game outside
         return outside;
+        
+        
+        //old code that was replaced
+        //outside.setExit("north", parkingLot1);
+        //outside.setExit("south", parkingLot2);
+        //outside.setExit("east", collegeCenter);
+        //parkingLot1.setExit("south",outside);
+        //parkingLot2.setExit("north",outside);
+        //collegeCenter.setExit("north", artCenter);
+        //collegeCenter.setExit("south", library);
+        //collegeCenter.setExit("east", studentCenter);
+        //collegeCenter.setExit("west", outside);
+        //theater.setExit("south",artCenter);
+        //artCenter.setExit("north",theater);
+        //artCenter.setExit("south",collegeCenter);
+        //studentCenter.setExit("west",collegeCenter);
+        //studentCenter.setExit("up",gym);
+        //studentCenter.setExit("down",cafeteria);
+        //gym.setExit("down",studentCenter);
+        //cafeteria.setExit("up",studentCenter);
+        //library.setExit("north",collegeCenter);
+        //library.setExit("east",sciCenter);
+        //library.setExit("up",guidance);
+        // guidance.setExit("up",office);
+        //guidance.setExit("down",library);
+        //office.setExit("down", guidance);
+       // new Door(guidance,"down",office,"up",null);
+        //sciCenter.setExit("west",library);
+        //sciCenter.setExit("east",sciLab);
+        //sciCenter.setExit("south",computerLab);
+        //computerLab.setExit("north", sciCenter);
+        //sciLab.setExit("west",sciCenter);
     }
     
     /**
@@ -288,16 +298,24 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        //Room nextRoom = player.getCurrentRoom().getExit(direction);
         Door door = player.getCurrentRoom().getDoor(direction);
 
-        if (nextRoom == null) {
+        if (door == null) {
             System.out.println("There is no door!");
         }
         else {
+            if(player.access(direction)){
+                //currentRoom = nextRoom;
+                //currentRoom = door;
+                System.out.println(player.getLongDescription());
+
+            }else{
+                System.out.println("The door is locked! Find the key.");
+            }
             //roomHistory.push(currentRoom);
-            player.enterRoom(nextRoom);
-            
+            //player.enterRoom(door);
+   
             //currentRoom = nextRoom;
             //System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
             look();
@@ -360,16 +378,6 @@ public class Game
         player.toStringHunger() + player.toStringMoves());
     }
     
-    // /**
-     // * Take item in current room. If the room contains an item,
-     // * it works, if not an error will occur.
-     // * (Not complete)
-     // */
-    // private void take(Command command){
-        // System.out.println("What Item do you want to take?");
-
-    // }
-    
     /**
      * List the items the player is carrying
      */
@@ -385,4 +393,12 @@ public class Game
         currentRoom = nextRoom;
         System.out.println(currentRoom.getLongDescription());
     }
+    
+    /**
+     * Enters the selected room and prints the description
+     */
+    // private void openDoor(Door nextDoor){
+        // currentRoom = nextDoor;
+        // System.out.println(currentRoom.getLongDescription());
+    // }
 }

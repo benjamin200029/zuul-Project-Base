@@ -1,5 +1,6 @@
 import java.util.Stack;
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * represenation of the player in the game Zuul
  *
@@ -63,6 +64,33 @@ public class Player
         roomHistory.push(currentRoom);
         currentRoom = room;        
     }
+    
+    /**
+     * Access the door in the given direction
+     * if correct, will return true, if false, 
+     * there is no door or it is lcoked and need a key
+     */
+    
+    public boolean access(String direction){
+        Door door = currentRoom.getDoor(direction);
+        if(door == null){
+            return false;
+        }
+        Room nextRoom = door.open(currentRoom);
+        
+        nextRoom = door.open(currentRoom);
+        if(nextRoom != null){
+            enterRoom(nextRoom);
+            //tryed this attempt but facing errors
+            //Iterator iter = Item.iterator();
+            //while(iter.hasNext() && !door.unlock((Item) iter.next())); 
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     
     /**
      * Gets the location of the player
@@ -247,5 +275,12 @@ public class Player
             itemsList += "-" + item.getLongDescription() + "\n";
         }
         return itemsList;
+    }
+    
+    public String getLongDescription(){
+        String returnString = currentRoom.getLongDescription();
+        returnString += "\n" + listItems();
+        return returnString;
+        
     }
 }
