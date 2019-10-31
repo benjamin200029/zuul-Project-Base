@@ -160,15 +160,27 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
             if(player.gameOver()){
-            printGameOver();
-            finished = true;
+                printGameOver();
+                finished = true;
+            }
+            if(player.starved()){
+                printStarved();
+                finished = true;
             }
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("\nThank you for playing.  Good bye.");
     }
     
     private void printGameOver(){
         System.out.println("You are out of time, campus is closed!");
+    }
+    
+    /**
+     * Prints starved message
+     */
+    private void printStarved()
+    {
+        System.out.println("You have starved to death!");
     }
 
     /**
@@ -300,7 +312,7 @@ public class Game
      */
     public void look()
     {
-        System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
+        System.out.println(player.getCurrentRoom().getLongDescription() + player.toStringHunger());
     }
     
     /**
