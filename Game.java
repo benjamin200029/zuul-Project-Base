@@ -308,7 +308,7 @@ public class Game
             if(player.access(direction)){
                 //currentRoom = nextRoom;
                 //currentRoom = door;
-                System.out.println(player.getLongDescription());
+                //System.out.println(player.getLongDescription());
 
             }else{
                 System.out.println("The door is locked! Find the key.");
@@ -374,8 +374,9 @@ public class Game
      */
     private void look()
     {
-        System.out.println(player.getCurrentRoom().getLongDescription() +
-        player.toStringHunger() + player.toStringMoves());
+        //System.out.println(player.getCurrentRoom().getLongDescription() +
+        //player.toStringHunger() + player.toStringMoves());
+        System.out.println(player.getLongDescription());
     }
     
     /**
@@ -391,7 +392,8 @@ public class Game
      */
     private void enterRoom(Room nextRoom){
         currentRoom = nextRoom;
-        System.out.println(currentRoom.getLongDescription());
+        //System.out.println(currentRoom.getLongDescription());
+        look();
     }
     
     /**
