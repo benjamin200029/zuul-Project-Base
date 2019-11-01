@@ -2,7 +2,7 @@ import java.util.Stack;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
- * represenation of the player in the game Zuul
+ * Represenation of the player in the game Zuul
  *
  * @author Benjamin Adelson and Erik Cooke
  * @version 2019.10.29
@@ -30,6 +30,11 @@ public class Player
     
     // holder for player items
     private ArrayList<Item> playerItems;
+    
+    // the current weight player is carrying
+    private int currentWeight;
+    // the maximum weight player can carry
+    private int maxWeight;   
 
     /**
      * Constructor for objects of class Player
@@ -43,6 +48,8 @@ public class Player
         hungerChange = -10;
         roomHistory = new Stack<Room>();
         playerItems = new ArrayList<Item>();
+        currentWeight = 0;
+        maxWeight = 600;
     }
     
     /**
@@ -101,13 +108,14 @@ public class Player
     
     /**
      * Gets the name of the player
+     * @return String The name of player
      */
     public String getName(){
         return name;
     }
     
     /**
-     * Checks if the player has lost
+     * Checks if the player has lost based on number of moves
      * @return Boolean
      */
     public boolean gameOver()
@@ -116,7 +124,7 @@ public class Player
     }
     
     /**
-     * Checks if the player has staved to death
+     * Checks if the player has starved to death
      * @return Boolean
      */
     public boolean starved()
@@ -150,7 +158,7 @@ public class Player
      */
     public String toStringHunger()
     {
-        return "Current hunger level: " + currentHunger + "/" + maxHunger;
+        return "\nCurrent hunger level: " + currentHunger + "/" + maxHunger;
     }
     
     /**
@@ -170,16 +178,14 @@ public class Player
     {
         if(currentHunger == maxHunger)
         {
-            return "You are full, stop trying to eat! Current Hunger is: " + 
-                   currentHunger + "/" + maxHunger;
+            return "You are full, stop trying to eat! " + toStringHunger();
         }
         currentHunger += 20;
         if(currentHunger > maxHunger)
         {
             currentHunger = maxHunger;
         }
-        return "Yum Yum Yum, that was good. Current Hunger is: " + currentHunger +
-               "/" + maxHunger;
+        return "Yum Yum Yum, that was good. " + toStringHunger();
     }
     
     /**
@@ -224,17 +230,31 @@ public class Player
      */
     public void takeItem(String newItem)
     {
-        Item tempItem = currentRoom.containsItem(newItem);
-        if(tempItem != null)
-        {
-            addItem(tempItem);
-            currentRoom.removeItem(tempItem);
-            System.out.println("You picked up the " + tempItem.getName());
-        }
-        else
+        Item tempItem = currentRoom.containsItem(newItem);        
+        if(tempItem == null)
         {
             System.out.println("This location does not have that item");
         }
+        else if(tempItem.getWeight() <= (maxWeight - currentWeight))
+        {
+            addItem(tempItem);
+            currentRoom.removeItem(tempItem);
+            addWeight(tempItem);
+            System.out.println("You picked up the " + tempItem.getName() + toStringWeight());
+        }
+        else
+        {
+            System.out.println("You can't carry the " + tempItem.getName());
+        }
+    }
+    
+        /**
+     * Adds the weight of the item to currentWeight
+     * @param tempItem
+     */
+    private void addWeight(Item tempItem)
+    {
+        currentWeight += tempItem.getWeight();
     }
     
     /**
@@ -251,13 +271,33 @@ public class Player
             if(itemDrop.equals(tempItem.getName()))
             {
                 removeItem(tempItem);
+                dropWeight(tempItem);
                 currentRoom.addItem(tempItem);
-                System.out.println("You dropped the " + itemDrop);
+                System.out.println("You dropped the " + itemDrop + toStringWeight());
                 return;
             }
             index++;
         }
         System.out.println("You do not have that item");
+    }
+    
+    /**
+     * Removes the weight of the item from currentWeight
+     * @param tempItem
+     */
+    private void dropWeight(Item tempItem)
+    {
+        currentWeight -= tempItem.getWeight();
+    }
+    
+    /**
+     * Returns player weight information in the form:
+     * Carry weight: 300/600
+     * @return String
+     */
+    public String toStringWeight()
+    {
+        return "\nCarry weight: " + currentWeight + "/" + maxWeight;
     }
     
     /**
@@ -274,13 +314,15 @@ public class Player
         {
             itemsList += "-" + item.getLongDescription() + "\n";
         }
+        itemsList += toStringWeight();
         return itemsList;
     }
     
     public String getLongDescription(){
-        String returnString = currentRoom.getLongDescription();
-        returnString += "\n" + listItems();
-        return returnString;
-        
-    }
+        String returnString = currentRoom.getLongDescription() + "\n"+ name + "'s Status" +
+                              toStringHunger() + toStringWeight() + toStringMoves();
+        //returnString += "\n" + listItems();
+        return returnString;        
+    }   
+
 }
