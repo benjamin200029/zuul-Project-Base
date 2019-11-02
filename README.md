@@ -71,7 +71,7 @@ Benjamin working-locked doors and keys
 
 -random transporter (discuss with others about implementation)
 
--non-player characters with clues/items for trade
+Erik working on an Apple vendor npc-non-player characters with clues/items for trade
 
 -make npc's move 
 
