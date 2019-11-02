@@ -76,7 +76,7 @@ public class Player
             return false;
         }
         Room nextRoom = door.open(currentRoom);
-         if(nextRoom != null){
+         if(nextRoom == null){
             //enterRoom(nextRoom);
             //if(Item key == playerItems.get(index)){   
             //}
@@ -85,6 +85,7 @@ public class Player
             while(iter.hasNext() && !door.unlock((Item) iter.next())); 
         }
         
+        //opens the door
         nextRoom = door.open(currentRoom);
         if(nextRoom != null){
             enterRoom(nextRoom); 

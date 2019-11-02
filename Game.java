@@ -105,6 +105,7 @@ public class Game
         new Door(collegeCenter,"north",artCenter,"south",null);
         new Door(collegeCenter,"south",library,"north",null);
         new Door(collegeCenter,"east",studentCenter,"west",key);
+
         
         new Door(artCenter,"north",theater,"south",null);
         

@@ -41,6 +41,7 @@ public class Door
     {
        if(this.key == key && key != null){
            locked = true;
+           //System.out.println("test A");
         }
         return locked;
     }
@@ -53,7 +54,10 @@ public class Door
     {
        if(this.key == key && key != null){
            locked = false;
+                  //System.out.println("test B");
+
         }
+
         return !locked;
     }
     
