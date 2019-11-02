@@ -120,7 +120,7 @@ public class Player
      */
     public boolean gameOver()
     {
-         return moves > maxMoves;
+         return moves >= maxMoves;
     }
     
     /**
@@ -167,25 +167,49 @@ public class Player
      */
     public String toStringMoves()
     {
-        return "\nMoves: " + moves;
+        return "\nMoves: " + moves + "/" + maxMoves;
     }
     
     /**
      * The player has eaten something.
      * 
      */
-    public String eat()
+    public String eat(String eatString)
     {
         if(currentHunger == maxHunger)
         {
             return "You are full, stop trying to eat! " + toStringHunger();
         }
-        currentHunger += 20;
-        if(currentHunger > maxHunger)
+        int index = 0;
+        Item tempItem;
+        while(index < playerItems.size())
         {
-            currentHunger = maxHunger;
+            tempItem = playerItems.get(index);
+            if(eatString.equals(tempItem.getName()))
+            {
+                if(tempItem.getEdible())
+                {
+                    currentHunger += tempItem.getHungerValue();
+                    removeItem(tempItem);
+                    dropWeight(tempItem);
+                    if(tempItem.getHungerValue() < 0)
+                    {
+                        return "That didn't taste good. Oh no! " + toStringHunger();
+                    }
+                    if(currentHunger > maxHunger)
+                    {
+                        currentHunger = maxHunger;                    
+                    }
+                        return "Yum Yum Yum, that was good. " + toStringHunger();
+                }
+                else
+                {
+                    return "You can not eat that item.";
+                }
+            }
+            index++;
         }
-        return "Yum Yum Yum, that was good. " + toStringHunger();
+        return "You do not have that item.";        
     }
     
     /**
@@ -319,7 +343,7 @@ public class Player
     }
     
     public String getLongDescription(){
-        String returnString = currentRoom.getLongDescription() + "\n"+ name + "'s Status" +
+        String returnString = currentRoom.getLongDescription() + "\nYour Status" +
                               toStringHunger() + toStringWeight() + toStringMoves();
         //returnString += "\n" + listItems();
         return returnString;        
