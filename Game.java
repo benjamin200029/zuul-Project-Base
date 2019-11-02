@@ -52,7 +52,7 @@ public class Game
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
-        Item flashlight, textbook, apple, key;
+        Item flashlight, textbook, apple, mushroom, key;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -75,12 +75,14 @@ public class Game
         // create items
         flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
         textbook = new Item("Textbook", "Object Oriented Programming", 300);
-        apple = new Item("Apple", "Red and juicy", 100);
+        apple = new Item("Apple", "Red and juicy", 100, 20);
+        mushroom = new Item("Mushroom", "White, strange looking", 50, -30);
                 
         key = new Item("Key", "Opens Office", 1);
         // add items to rooms
         outside.addItem(flashlight);
         outside.addItem(textbook);
+        outside.addItem(mushroom);
         parkingLot1.addItem(apple);
         cafeteria.addItem(apple);
         cafeteria.addItem(apple);
@@ -231,7 +233,7 @@ public class Game
                 break;
                 
             case EAT:
-                System.out.println(player.eat());
+                eat(command);
                 break;
                 
             case BACK:
@@ -394,6 +396,17 @@ public class Game
         currentRoom = nextRoom;
         //System.out.println(currentRoom.getLongDescription());
         look();
+    }
+    
+    public void eat(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Eat what?");
+            return;
+        }
+        String eatString = command.getSecondWord();
+        System.out.println(player.eat(eatString));
     }
     
     /**
