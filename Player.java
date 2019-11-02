@@ -2,7 +2,7 @@ import java.util.Stack;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
- * Represenation of the player in the game Zuul
+ * Represenation of the player in the game College of Raritan
  *
  * @author Benjamin Adelson and Erik Cooke
  * @version 2019.10.29
@@ -75,7 +75,7 @@ public class Player
     /**
      * Access the door in the given direction
      * if correct, will return true, if false, 
-     * there is no door or it is lcoked and need a key
+     * there is no door or it is locked and needs a key
      */
     
     public boolean access(String direction){
@@ -135,7 +135,7 @@ public class Player
     
     /**
      * Returns the maximum hunger level for player
-     * @return Maximum hunger level
+     * @return int Maximum hunger level
      */
     public int getMaxHunger()
     {
@@ -144,7 +144,7 @@ public class Player
     
     /**
      * Returns the current hunger level.
-     * @return The current hunger level.
+     * @return int The current hunger level.
      */
     public int getCurrentHunger()
     {
@@ -272,7 +272,7 @@ public class Player
         }
     }
     
-        /**
+    /**
      * Adds the weight of the item to currentWeight
      * @param tempItem
      */

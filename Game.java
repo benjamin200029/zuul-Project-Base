@@ -380,15 +380,13 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    
+   
     /**
      * Prints the description of the room and the exits.
      */
     private void look()
     {
-        //System.out.println(player.getCurrentRoom().getLongDescription() +
-        //player.toStringHunger() + player.toStringMoves());
-        System.out.println(player.getLongDescription());
+         System.out.println(player.getLongDescription());
     }
     
     /**
@@ -399,14 +397,14 @@ public class Game
         System.out.println(player.listItems());
     }
    
-    /**
-     * Enters the selected room and prints the description
-     */
-    private void enterRoom(Room nextRoom){
-        currentRoom = nextRoom;
-        //System.out.println(currentRoom.getLongDescription());
-        look();
-    }
+    // /**
+     // * Enters the selected room and prints the description
+     // * @param nextRoom 
+     // */
+    // private void enterRoom(Room nextRoom){
+        // currentRoom = nextRoom;
+        // look();
+    // }
     
     public void eat(Command command)
     {
