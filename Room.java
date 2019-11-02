@@ -34,6 +34,9 @@ public class Room
     //Stores items in this room
     private ArrayList<Item> roomItems;
     
+    // Store an npc in this room
+    private NPC npc;
+    
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -46,6 +49,7 @@ public class Room
         exits = new HashMap<>();
         doors = new HashMap<>();
         roomItems = new ArrayList<Item>(5);
+        npc = null;
     }
 
     /**
@@ -204,5 +208,18 @@ public class Room
         }
         return null;
     }
+    
+    /**
+     * Adds an npc to this room
+     * @param npc The character to add to this room
+     */
+    public void addNpc(NPC tempNPC)
+    {
+        npc = tempNPC;
+    }
+    
+    /**
+     * 
+     */
 }
 

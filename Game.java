@@ -50,6 +50,7 @@ public class Game
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
         Item flashlight, textbook, apple, mushroom, key, transporter;
+        NPC appleannie;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -119,6 +120,13 @@ public class Game
         
         new Door(sciCenter,"south",computerLab,"north",null);
         new Door(sciCenter,"east",sciLab,"west",null);
+        
+        // NPC's
+        appleannie = new NPC("Annie", collegeCenter);
+        
+        appleannie.addItem(apple);
+        appleannie.addItem(apple);
+        appleannie.addItem(apple);
         
         //currentRoom = outside;
         // start game outside
