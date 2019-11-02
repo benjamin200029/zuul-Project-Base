@@ -347,6 +347,58 @@ public class Player
                               toStringHunger() + toStringWeight() + toStringMoves();
         //returnString += "\n" + listItems();
         return returnString;        
-    }   
+    }
+    
+    /**
+     * Charges the transporter to the current room if the player has it
+     */
+    public String chargeTransporter()
+    {
+        int index = 0;
+        Item tempItem;
+        while(index < playerItems.size())
+        {
+            tempItem = playerItems.get(index);
+            if(tempItem.getName().equalsIgnoreCase("transporter"))
+            {
+                tempItem.setChargedRoom(currentRoom);
+                return "The transporter has been set to: " + currentRoom.getShortDescription();
+            }
+            index ++;
+        }
+        return "You do not have the transporter";
+    }
+    
+    /**
+     * Moves the user to the chargedRoom if they have the transporter
+     * @return String
+     */
+    public String useTransporter()
+    {
+        int index = 0;
+        Item tempItem;
+        while(index < playerItems.size())
+        {
+            tempItem = playerItems.get(index);
+            if(tempItem.getName().equalsIgnoreCase("transporter"))
+            {
+                if(tempItem.getChargedRoom() == null)
+                {
+                    return "\nThe transporter is not charged with a room\n";
+                }
+                else if(tempItem.getChargedRoom().equals(currentRoom))
+                {
+                    return "\nYou are already in the charged room\n";
+                }
+                else
+                {
+                    currentRoom = tempItem.getChargedRoom();
+                    return "\nYou are being transported to: " + currentRoom.getShortDescription() + "\n";
+                }
+            }
+            index++;
+        }
+        return "You do not have the transporter";
+    }
 
 }
