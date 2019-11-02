@@ -5,17 +5,17 @@ If any of the following steps are not completed, the assignment will not be grad
 
 -Every class must have a meaningful javadoc class header with appropriate text and updated @author and @version directives
 
--GameMain
+DONE-GameMain
 
 -Game
 
--CommandWords
+DONE-CommandWords
 
--Command
+DONE-Command
 
--CommandWord
+DONE-CommandWord
 
--Parser
+DONE-Parser
 
 -Player
 
