@@ -24,7 +24,8 @@ public class Room
     private HashMap<String, Door> doors;   
 
     // stores exits of this room.
-        
+    
+    //Do we still need these Rooms?
     public Room northExit;
     public Room southExit;
     public Room eastExit;
@@ -164,7 +165,8 @@ public class Room
     }
     
     /**
-     * Returns a string of the items in the current room or null if there are no items
+     * Returns a string of the items in the current room
+     * @return String
      */
     public String getItemString()
     {
@@ -183,7 +185,11 @@ public class Room
         }
     }
     
-    public Item containsItem(String itemFind)
+    /**
+     * Given the String of an Item name, searches the room for that item and returns it or null
+     * if not here
+     * @return Item
+     */public Item containsItem(String itemFind)
     {
         int index = 0;
         Item search;
