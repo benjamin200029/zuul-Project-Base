@@ -185,7 +185,7 @@ public class Player
         while(index < playerItems.size())
         {
             tempItem = playerItems.get(index);
-            if(eatString.equals(tempItem.getName()))
+            if(eatString.equalsIgnoreCase(tempItem.getName()))
             {
                 if(tempItem.getEdible())
                 {
@@ -292,7 +292,7 @@ public class Player
         while(index < playerItems.size())
         {
             tempItem = playerItems.get(index);
-            if(itemDrop.equals(tempItem.getName()))
+            if(itemDrop.equalsIgnoreCase(tempItem.getName()))
             {
                 removeItem(tempItem);
                 dropWeight(tempItem);
