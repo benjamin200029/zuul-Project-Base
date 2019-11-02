@@ -30,6 +30,7 @@ public class Door
         area1.setDoor(direction1,this);
         area2.setDoor(direction2,this);
         this.key = key;
+        lock(key);
     }
     
     /**

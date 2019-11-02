@@ -34,7 +34,10 @@ public class Player
     // the current weight player is carrying
     private int currentWeight;
     // the maximum weight player can carry
-    private int maxWeight;   
+    private int maxWeight;
+    
+    private Item items = new Item();
+
 
     /**
      * Constructor for objects of class Player
@@ -62,17 +65,6 @@ public class Player
     }
     
     /**
-     * Enter the given room
-     * @param room The Room to move into
-     */
-    public void enterRoom(Room room){        
-        moves++;
-        currentHunger += hungerChange;
-        roomHistory.push(currentRoom);
-        currentRoom = room;        
-    }
-    
-    /**
      * Access the door in the given direction
      * if correct, will return true, if false, 
      * there is no door or it is locked and needs a key
@@ -84,13 +76,18 @@ public class Player
             return false;
         }
         Room nextRoom = door.open(currentRoom);
+         if(nextRoom != null){
+            //enterRoom(nextRoom);
+            //if(Item key == playerItems.get(index)){   
+            //}
+            //tryed this attempt but facing errors
+            Iterator iter = items.iterator();
+            while(iter.hasNext() && !door.unlock((Item) iter.next())); 
+        }
         
         nextRoom = door.open(currentRoom);
         if(nextRoom != null){
-            enterRoom(nextRoom);
-            //tryed this attempt but facing errors
-            //Iterator iter = Item.iterator();
-            //while(iter.hasNext() && !door.unlock((Item) iter.next())); 
+            enterRoom(nextRoom); 
             return true;
         }
         else{
@@ -98,6 +95,16 @@ public class Player
         }
     }
     
+    /**
+     * Enter the given room
+     * @param room The Room to move into
+     */
+    public void enterRoom(Room room){        
+        moves++;
+        currentHunger += hungerChange;
+        roomHistory.push(currentRoom);
+        currentRoom = room;        
+    }
     
     /**
      * Gets the location of the player

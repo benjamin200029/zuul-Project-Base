@@ -38,10 +38,14 @@ public class Item
         this.name = name;
         this.description = description;
         this.weight = weight;
-        items = new HashMap<String,Item>();
         isEdible = false;
         hungerValue = 0;
         chargedRoom = null;
+    }
+    
+    public Item()
+    {
+        items = new HashMap<String,Item>();
     }
     
     /**

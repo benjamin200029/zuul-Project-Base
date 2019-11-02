@@ -90,6 +90,7 @@ public class Game
         collegeCenter.addItem(apple);
         
         //create a key item
+        collegeCenter.addItem(key);
         //guidance.addItem(key);
 
         
@@ -311,13 +312,12 @@ public class Game
             if(player.access(direction)){
                 //currentRoom = nextRoom;
                 //currentRoom = door;
-                //System.out.println(player.getLongDescription());
-
+                System.out.println(player.getLongDescription());
             }else{
                 System.out.println("The door is locked! Find the key.");
             }
             //player.enterRoom(door);
-            look();
+            //look();
         }
     }
     
