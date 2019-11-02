@@ -52,7 +52,7 @@ public class Game
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
-        Item flashlight, textbook, apple, mushroom, key;
+        Item flashlight, textbook, apple, mushroom, key, transporter;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -77,12 +77,14 @@ public class Game
         textbook = new Item("Textbook", "Object Oriented Programming", 300);
         apple = new Item("Apple", "Red and juicy", 100, 20);
         mushroom = new Item("Mushroom", "White, strange looking", 50, -30);
+        transporter = new Item("Transporter", "A personal transporter. Use: charge transporter, use transporter", 100);                                
                 
         key = new Item("Key", "Opens Office", 1);
         // add items to rooms
         outside.addItem(flashlight);
         outside.addItem(textbook);
         outside.addItem(mushroom);
+        outside.addItem(transporter);
         parkingLot1.addItem(apple);
         cafeteria.addItem(apple);
         cafeteria.addItem(apple);
@@ -261,6 +263,14 @@ public class Game
             case ITEMS:
                 listPlayerItems();
                 break;
+                
+            case CHARGE:
+                chargeTransporter(command);
+                break;
+                
+            case USE:
+                useTransporter(command);
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -407,6 +417,48 @@ public class Game
         }
         String eatString = command.getSecondWord();
         System.out.println(player.eat(eatString));
+    }
+    
+    /**
+     * Charges the transporter if player has it
+     */
+    public void chargeTransporter(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Charge what?");
+            return;
+        }
+        if(command.getSecondWord().equalsIgnoreCase("transporter"))
+        {
+            System.out.println(player.chargeTransporter());
+        }
+        else
+        {
+            System.out.println("You can't charge that item");
+        }
+    }
+    
+    /**
+     * Uses the transporter
+     * @param command
+     */
+    public void useTransporter(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Use what?");
+            return;
+        }
+        if(command.getSecondWord().equalsIgnoreCase("transporter"))
+        {
+            System.out.println(player.useTransporter());
+            look();
+        }
+        else
+        {
+            System.out.println("You can't use that item");
+        }
     }
     
     /**

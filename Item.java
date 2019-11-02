@@ -23,6 +23,9 @@ public class Item
     private boolean isEdible;
     // hunger change if eaten
     private int hungerValue;
+    
+    // holds the room for the transporter charged command
+    private Room chargedRoom;
 
     /**
      * Constructor for objects of class Item
@@ -38,6 +41,7 @@ public class Item
         items = new HashMap<String,Item>();
         isEdible = false;
         hungerValue = 0;
+        chargedRoom = null;
     }
     
     /**
@@ -55,6 +59,7 @@ public class Item
         items = new HashMap<String,Item>();
         isEdible = true;
         this.hungerValue = hungerValue;
+        chargedRoom = null;
     }
     
     /**
@@ -122,5 +127,23 @@ public class Item
     public int getHungerValue()
     {
         return hungerValue;
+    }
+    
+    /**
+     * Sets the chargedRoom
+     * @param chargedRoom Room to transport to
+     */
+    public void setChargedRoom(Room chargedRoom)
+    {
+        this.chargedRoom = chargedRoom;
+    }
+    
+    /**
+     * Returns the chargedRoom
+     * @return Room
+     */
+    public Room getChargedRoom()
+    {
+        return chargedRoom;
     }
 }
