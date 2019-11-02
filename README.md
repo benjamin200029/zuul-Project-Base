@@ -4,6 +4,16 @@ Mandatory features:
 If any of the following steps are not completed, the assignment will not be graded.
 
 -Every class must have a meaningful javadoc class header with appropriate text and updated @author and @version directives
+-GameMain
+-Game
+-CommandWords
+-Command
+-CommandWord
+-Parser
+-Player
+-Room
+-Door
+-Item
 
 -Every method must have a meaningful javadoc method comment with appropriate directives (@param, @return, @throws, etc.)
 
