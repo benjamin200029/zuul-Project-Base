@@ -1,16 +1,14 @@
 
 //import java.util.Stack;
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
+ *  This class is the main class of the "College of Raritan" application. 
+ *  "College of Raritan" is a very simple, text based adventure game.  Users 
+ *  can walk around some scenery. Pick up and drop items, eat some items, use a personal transporter.
  * 
- *  To play this game, create an instance of this class and call the "play"
- *  method.
+ *  To play this game, create an instance of the class GameMain.
  * 
- *  This main class creates and initialises all the others: it creates all
- *  rooms, creates the parser and starts the game.  It also evaluates and
+ *  This class creates and initialises all the others: it creates all
+ *  rooms, items, player, and doors, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  *  
  * @author Benjamin Adelson and Erik Cooke
@@ -23,8 +21,7 @@
 public class Game
 {
     private Parser parser;
-    private Room currentRoom;
-    //private Stack<Room> roomHistory;
+    //private Room currentRoom;
     private Player player;
         
     /**
@@ -52,7 +49,7 @@ public class Game
         Room outside, theater, studentCenter, computerLab, office, sciLab, guidance, artCenter,
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
-        Item flashlight, textbook,key;
+        Item flashlight, textbook, apple, mushroom, key, transporter;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -75,10 +72,23 @@ public class Game
         // create items
         flashlight = new Item("Flashlight","Small flashlight with batteries", 100);
         textbook = new Item("Textbook", "Object Oriented Programming", 300);
+        apple = new Item("Apple", "Red and juicy", 100, 20);
+        mushroom = new Item("Mushroom", "White, strange looking", 50, -30);
+        transporter = new Item("Transporter", "A personal transporter. Use: charge transporter, use transporter", 100);                                
+                
         key = new Item("Key", "Opens Office", 1);
+        
         // add items to rooms
         outside.addItem(flashlight);
         outside.addItem(textbook);
+        outside.addItem(mushroom);
+        outside.addItem(transporter);
+        parkingLot1.addItem(apple);
+        cafeteria.addItem(apple);
+        cafeteria.addItem(apple);
+        cafeteria.addItem(apple);
+        collegeCenter.addItem(apple);
+        
         //create a key item
         //guidance.addItem(key);
 
@@ -108,7 +118,7 @@ public class Game
         new Door(sciCenter,"south",computerLab,"north",null);
         new Door(sciCenter,"east",sciLab,"west",null);
         
-        currentRoom = outside;
+        //currentRoom = outside;
         // start game outside
         return outside;
         
@@ -193,7 +203,6 @@ public class Game
         System.out.println("College of Raritan is a new, incredibly boring educational game that gives you a simulation actully being in college.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        //System.out.println(currentRoom.getLongDescription());
         look();
     }
 
@@ -223,17 +232,11 @@ public class Game
                 break;
                 
             case EAT:
-                System.out.println(player.eat());
+                eat(command);
                 break;
                 
             case BACK:
-                if(command.hasSecondWord())
-                {
-                    System.out.println("Back where?");
-                    break;
-                }
-                player.goBack();
-                look();
+                goBack(command);
                 break;
 
             case GO:
@@ -250,6 +253,14 @@ public class Game
                 
             case ITEMS:
                 listPlayerItems();
+                break;
+                
+            case CHARGE:
+                chargeTransporter(command);
+                break;
+                
+            case USE:
+                useTransporter(command);
                 break;
 
             case QUIT:
@@ -300,18 +311,29 @@ public class Game
             if(player.access(direction)){
                 //currentRoom = nextRoom;
                 //currentRoom = door;
-                System.out.println(player.getLongDescription());
+                //System.out.println(player.getLongDescription());
 
             }else{
                 System.out.println("The door is locked! Find the key.");
             }
-            //roomHistory.push(currentRoom);
             //player.enterRoom(door);
-   
-            //currentRoom = nextRoom;
-            //System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
             look();
         }
+    }
+    
+    /**
+     * Takes the player back to previous room
+     * @param command
+     */
+    public void goBack(Command command)
+    {
+        if(command.hasSecondWord())
+        {
+            System.out.println("Back where?");
+            return;
+        }
+        player.goBack();
+        look();
     }
     
     /**
@@ -327,7 +349,7 @@ public class Game
             return;
         }
         String itemName = command.getSecondWord();        
-        player.takeItem(itemName);
+        System.out.println(player.takeItem(itemName));
     }
     
     /**
@@ -342,7 +364,7 @@ public class Game
             return;
         }
         String itemName = command.getSecondWord();
-        player.dropItem(itemName);
+        System.out.println(player.dropItem(itemName));
     }
 
     /** 
@@ -360,14 +382,13 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    
+   
     /**
      * Prints the description of the room and the exits.
      */
     private void look()
     {
-        System.out.println(player.getCurrentRoom().getLongDescription() +
-        player.toStringHunger() + player.toStringMoves());
+         System.out.println(player.getLongDescription());
     }
     
     /**
@@ -378,12 +399,66 @@ public class Game
         System.out.println(player.listItems());
     }
    
+    // /**
+     // * Enters the selected room and prints the description
+     // * @param nextRoom 
+     // */
+    // private void enterRoom(Room nextRoom){
+        // currentRoom = nextRoom;
+        // look();
+    // }
+    
+    public void eat(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Eat what?");
+            return;
+        }
+        String eatString = command.getSecondWord();
+        System.out.println(player.eat(eatString));
+    }
+    
     /**
-     * Enters the selected room and prints the description
+     * Charges the transporter if player has it
      */
-    private void enterRoom(Room nextRoom){
-        currentRoom = nextRoom;
-        System.out.println(currentRoom.getLongDescription());
+    public void chargeTransporter(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Charge what?");
+            return;
+        }
+        if(command.getSecondWord().equalsIgnoreCase("transporter"))
+        {
+            System.out.println(player.chargeTransporter());
+        }
+        else
+        {
+            System.out.println("You can't charge that item");
+        }
+    }
+    
+    /**
+     * Uses the transporter
+     * @param command
+     */
+    public void useTransporter(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Use what?");
+            return;
+        }
+        if(command.getSecondWord().equalsIgnoreCase("transporter"))
+        {
+            System.out.println(player.useTransporter());
+            look();
+        }
+        else
+        {
+            System.out.println("You can't use that item");
+        }
     }
     
     /**

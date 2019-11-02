@@ -18,9 +18,18 @@ public class Item
     
     //location of the item key
     private HashMap<String, Item> items;
+    
+    // is this item edible?
+    private boolean isEdible;
+    // hunger change if eaten
+    private int hungerValue;
+    
+    // holds the room for the transporter charged command
+    private Room chargedRoom;
 
     /**
      * Constructor for objects of class Item
+     * @param name - name of this item
      * @param description - descibes the item
      * @param weight - how much does it weigh?
      */
@@ -30,7 +39,27 @@ public class Item
         this.description = description;
         this.weight = weight;
         items = new HashMap<String,Item>();
-
+        isEdible = false;
+        hungerValue = 0;
+        chargedRoom = null;
+    }
+    
+    /**
+     * Constructor for an edible item
+     * @param name - name of this item
+     * @param description - describes this item
+     * @param weight - how much does this item weigh?
+     * @param hungerValue - hunger change if this item is eaten
+     */
+    public Item(String name, String description, int weight, int hungerValue)
+    {
+        this.name = name;
+        this.description = description;
+        this.weight = weight;
+        items = new HashMap<String,Item>();
+        isEdible = true;
+        this.hungerValue = hungerValue;
+        chargedRoom = null;
     }
     
     /**
@@ -80,5 +109,41 @@ public class Item
     public String getLongDescription()
     {
         return name + "-" + description + ", " + weight;
+    }
+    
+    /**
+     * Returns a bool for isEdible
+     * @return bool
+     */
+    public boolean getEdible()
+    {
+        return isEdible;
+    }
+    
+    /**
+     * Returns the edible value of this item
+     * @return int of the hunger value
+     */
+    public int getHungerValue()
+    {
+        return hungerValue;
+    }
+    
+    /**
+     * Sets the chargedRoom
+     * @param chargedRoom Room to transport to
+     */
+    public void setChargedRoom(Room chargedRoom)
+    {
+        this.chargedRoom = chargedRoom;
+    }
+    
+    /**
+     * Returns the chargedRoom
+     * @return Room
+     */
+    public Room getChargedRoom()
+    {
+        return chargedRoom;
     }
 }

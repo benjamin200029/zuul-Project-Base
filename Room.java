@@ -190,7 +190,7 @@ public class Room
         while(index < roomItems.size())
         {
             search = roomItems.get(index);
-            if(itemFind.equals(search.getName()))
+            if(itemFind.equalsIgnoreCase(search.getName()))
             {
                 return search;
             }
