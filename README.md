@@ -43,9 +43,9 @@ These are the fun ones
 
 DONE-Time limit
 
-Done-one way trap door
+DONE-one way trap door
 
--charged transporter (beamer)
+Erik working-charged transporter (beamer)
 
 Benjamin working-locked doors and keys
 
