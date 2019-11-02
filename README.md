@@ -45,7 +45,7 @@ DONE-Time limit
 
 DONE-one way trap door
 
-Erik working-charged transporter (beamer)
+DONE-charged transporter (beamer)
 
 Benjamin working-locked doors and keys
 
