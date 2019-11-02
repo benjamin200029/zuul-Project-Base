@@ -251,24 +251,25 @@ public class Player
     /**
      * Pickup an Item from a Room.
      * @param Item : Item to be picked up
+     * @return String
      */
-    public void takeItem(String newItem)
+    public String takeItem(String newItem)
     {
         Item tempItem = currentRoom.containsItem(newItem);        
         if(tempItem == null)
         {
-            System.out.println("This location does not have that item");
+            return "This location does not have that item";
         }
         else if(tempItem.getWeight() <= (maxWeight - currentWeight))
         {
             addItem(tempItem);
             currentRoom.removeItem(tempItem);
             addWeight(tempItem);
-            System.out.println("You picked up the " + tempItem.getName() + toStringWeight());
+            return "You picked up the " + tempItem.getName() + toStringWeight();
         }
         else
         {
-            System.out.println("You can't carry the " + tempItem.getName());
+            return("You can't carry the " + tempItem.getName());
         }
     }
     
@@ -284,8 +285,9 @@ public class Player
     /**
      * Drops an item from the players item list
      * @param itemDrop : item name to be dropped
+     * @return String
      */
-    public void dropItem(String itemDrop)
+    public String dropItem(String itemDrop)
     {
         int index = 0;
         Item tempItem;
@@ -297,12 +299,11 @@ public class Player
                 removeItem(tempItem);
                 dropWeight(tempItem);
                 currentRoom.addItem(tempItem);
-                System.out.println("You dropped the " + itemDrop + toStringWeight());
-                return;
+                return "You dropped the " + tempItem.getName() + toStringWeight();
             }
             index++;
         }
-        System.out.println("You do not have that item");
+        return "You do not have that item";
     }
     
     /**
@@ -342,15 +343,30 @@ public class Player
         return itemsList;
     }
     
+    /**
+     * Returns a formatted string like the following:
+     * 
+     * You are outside the main entrance of the university.
+     * Door Exits: east south north
+     * Item(s) at this location.
+     * -Flashlight-Small flashlight with batteries, 100
+     * 
+     * Your Status
+     * Current hunger level: 100/100
+     * Carry weight: 0/600
+     * Moves: 0/15
+     * 
+     * @return String     * 
+     */
     public String getLongDescription(){
         String returnString = currentRoom.getLongDescription() + "\nYour Status" +
                               toStringHunger() + toStringWeight() + toStringMoves();
-        //returnString += "\n" + listItems();
-        return returnString;        
+        return returnString;
     }
     
     /**
      * Charges the transporter to the current room if the player has it
+     * @return String
      */
     public String chargeTransporter()
     {

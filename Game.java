@@ -1,16 +1,14 @@
 
 //import java.util.Stack;
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
+ *  This class is the main class of the "College of Raritan" application. 
+ *  "College of Raritan" is a very simple, text based adventure game.  Users 
+ *  can walk around some scenery. Pick up and drop items, eat some items, use a personal transporter.
  * 
- *  To play this game, create an instance of this class and call the "play"
- *  method.
+ *  To play this game, create an instance of the class GameMain.
  * 
- *  This main class creates and initialises all the others: it creates all
- *  rooms, creates the parser and starts the game.  It also evaluates and
+ *  This class creates and initialises all the others: it creates all
+ *  rooms, items, player, and doors, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  *  
  * @author Benjamin Adelson and Erik Cooke
@@ -23,8 +21,7 @@
 public class Game
 {
     private Parser parser;
-    private Room currentRoom;
-    //private Stack<Room> roomHistory;
+    //private Room currentRoom;
     private Player player;
         
     /**
@@ -80,6 +77,7 @@ public class Game
         transporter = new Item("Transporter", "A personal transporter. Use: charge transporter, use transporter", 100);                                
                 
         key = new Item("Key", "Opens Office", 1);
+        
         // add items to rooms
         outside.addItem(flashlight);
         outside.addItem(textbook);
@@ -120,7 +118,7 @@ public class Game
         new Door(sciCenter,"south",computerLab,"north",null);
         new Door(sciCenter,"east",sciLab,"west",null);
         
-        currentRoom = outside;
+        //currentRoom = outside;
         // start game outside
         return outside;
         
@@ -205,7 +203,6 @@ public class Game
         System.out.println("College of Raritan is a new, incredibly boring educational game that gives you a simulation actully being in college.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        //System.out.println(currentRoom.getLongDescription());
         look();
     }
 
@@ -239,13 +236,7 @@ public class Game
                 break;
                 
             case BACK:
-                if(command.hasSecondWord())
-                {
-                    System.out.println("Back where?");
-                    break;
-                }
-                player.goBack();
-                look();
+                goBack(command);
                 break;
 
             case GO:
@@ -325,13 +316,24 @@ public class Game
             }else{
                 System.out.println("The door is locked! Find the key.");
             }
-            //roomHistory.push(currentRoom);
             //player.enterRoom(door);
-   
-            //currentRoom = nextRoom;
-            //System.out.println(player.getCurrentRoom().getLongDescription() + player.getHunger());
             look();
         }
+    }
+    
+    /**
+     * Takes the player back to previous room
+     * @param command
+     */
+    public void goBack(Command command)
+    {
+        if(command.hasSecondWord())
+        {
+            System.out.println("Back where?");
+            return;
+        }
+        player.goBack();
+        look();
     }
     
     /**
@@ -347,7 +349,7 @@ public class Game
             return;
         }
         String itemName = command.getSecondWord();        
-        player.takeItem(itemName);
+        System.out.println(player.takeItem(itemName));
     }
     
     /**
@@ -362,7 +364,7 @@ public class Game
             return;
         }
         String itemName = command.getSecondWord();
-        player.dropItem(itemName);
+        System.out.println(player.dropItem(itemName));
     }
 
     /** 
