@@ -40,9 +40,9 @@ Everyone must
 
 To earn a C implement the following:
 
--DONE-8.15 (p 303) - add another command, ie. eat with a simple text response
+-DONE-8.15 (p 303) - add another command, ie. eat with a simple text response-eat works if you have an edible item with you and it adds to or subtracts from your hunger.
 
--DONE-8.16 (p 305) - Streamline printing of available commands
+-DONE-8.16 (p 305) - Streamline printing of available commands-help command
  
 
 To Earn a B, complete the C task and Implement three (3) of the following
@@ -55,17 +55,17 @@ To Earn a B, complete the C task and Implement three (3) of the following
 
 4-DONE-8.26 - implement the go back many rooms version of the command command (back repeatedly retraces your steps)
 
-5-DONE-8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented
-Erik-Started working on a carryweight system for player
+5-DONE-8.28-8.33  (p 314) -add a Player that can carry one or more objects according to the options presented. Player has a carry weight limit and can hold and drop multiple items.
+
 
 To Earn an A, complete the B task and Implement three (3) of the following
 These are the fun ones
 
-DONE-Time limit
+DONE-Time limit-based on moves, is displayed as part of player status on terminal
 
 DONE-one way trap door
 
-DONE-charged transporter (beamer)
+DONE-charged transporter (beamer)-can be taken, charged, used, and dropped.
 
 Benjamin working-locked doors and keys
 
@@ -75,7 +75,7 @@ Benjamin working-locked doors and keys
 
 -make npc's move 
 
-DONE-rudimentary health system
+DONE-rudimentary health system-Based on a hunger level that decreases everytime the player moves.  Can be added to or subtracted from  based on edible items with the eat command.
 
 If you want to add a feature other than these, please e-mail or talk to me. IF it is risky I will ask you to branch your code so I can give credit for the attempt, and if you succeed you can merge your branch back to the main code base. 
 
