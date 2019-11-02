@@ -6,21 +6,10 @@
  */
 public class GameMain
 {
-    //Game game;
-
-    // /**
-     // * Constructor for objects of class GameMain
-     // */
-    // public GameMain()
-    // {
-         // game = new Game();
-    // }
-
     /**
-     * An example of a method - replace this comment with your own
+     * Main method for the game. creates a new game and runs the play method
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  args[]
      */
     public static void main(String args[])
     {
