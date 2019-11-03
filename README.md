@@ -71,7 +71,7 @@ Benjamin working-locked doors and keys
 
 -random transporter (discuss with others about implementation)
 
-Erik working on an Apple vendor npc-non-player characters with clues/items for trade
+DONE-npc-non-player characters with clues/items for trade-Apple Annie will drop an apple if you say please.
 
 -make npc's move 
 
