@@ -79,7 +79,7 @@ public class Player
             //if(Item key == playerItems.get(index)){   
             //}
             //tryed this attempt but facing errors
-            Iterator iter = items.iterator();
+            Iterator iter = playerItems.iterator();
             while(iter.hasNext() && !door.unlock((Item) iter.next())); 
         }
         
