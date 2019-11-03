@@ -92,7 +92,7 @@ public class Room
     {
         //old code
         //return "You are " + description + ".\n" + getExitString() + "\n" + getItemString();
-        return "You are " + description + ".\n" + getDoorString() + "\n" + getItemString();
+        return "You are " + description + ".\n" + getDoorString() + "\n" + getItemString() + npcInRoom();
 
     }
 
@@ -193,7 +193,8 @@ public class Room
      * Given the String of an Item name, searches the room for that item and returns it or null
      * if not here
      * @return Item
-     */public Item containsItem(String itemFind)
+     */
+    public Item containsItem(String itemFind)
     {
         int index = 0;
         Item search;
@@ -213,13 +214,53 @@ public class Room
      * Adds an npc to this room
      * @param npc The character to add to this room
      */
-    public void addNpc(NPC tempNPC)
+    public void addNpc(NPC tempNpc)
     {
-        npc = tempNPC;
+        npc = tempNpc;
     }
     
     /**
-     * 
+     * Removes an npc from this room
+     *
      */
+    public void removeNpc()
+    {
+        npc = null;
+    }
+    
+    /**
+     * returns the npc in the room or null if there are none
+     * @return NPC
+     */
+    public NPC getNpc()
+    {
+        return npc;
+    }
+    
+    /**
+     * Returns true or false if there is an npc in this room
+     * @return boolean
+     */
+    public boolean isThereNpc()
+    {
+        if(npc == null) return false;
+        return true;
+    }
+    
+    /**
+     * Returns a string if an npc character is in this room
+     * @return String
+     */
+    public String npcInRoom()
+    {
+        if(npc == null)
+        {
+            return "";
+        }
+        else
+        {
+            return "\nThere is someone here:\n" + npc.getGreeting() + "\n";
+        }
+    }
 }
 
