@@ -50,6 +50,7 @@ public class Game
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
         Item flashlight, textbook, apple, mushroom, key, transporter;
+        NPC appleannie;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -119,6 +120,17 @@ public class Game
         
         new Door(sciCenter,"south",computerLab,"north",null);
         new Door(sciCenter,"east",sciLab,"west",null);
+        
+        // NPC's
+        appleannie = new NPC("Annie", "Hello, I am Apple Annie and I give out apples to those who are nice",
+                               "Oh, you are so nice dear, here is an apple");
+        
+        appleannie.addItem(apple);
+        appleannie.addItem(apple);
+        appleannie.addItem(apple);
+        
+        collegeCenter.addNpc(appleannie);
+        appleannie.setRoom(collegeCenter);
         
         //currentRoom = outside;
         // start game outside
@@ -263,6 +275,10 @@ public class Game
                 
             case USE:
                 useTransporter(command);
+                break;
+                
+            case SAY:
+                say(command);
                 break;
 
             case QUIT:
@@ -459,6 +475,32 @@ public class Game
         else
         {
             System.out.println("You can't use that item");
+        }
+    }
+    
+    /**
+     * The player is talking
+     * @param command
+     */
+    public void say(Command command)
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("Say what?");
+            return;
+        }
+        if(command.getSecondWord().equalsIgnoreCase("please"))
+        {
+            if(player.getCurrentRoom().isThereNpc())
+            {
+            NPC tempNpc = player.getCurrentRoom().getNpc();
+            System.out.println(tempNpc.getMessage());
+            look();
+            }
+            else
+            {
+                System.out.println("You are talking to yourself");
+            }
         }
     }
     
