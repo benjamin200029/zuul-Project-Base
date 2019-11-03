@@ -90,7 +90,7 @@ public class Game
         collegeCenter.addItem(apple);
         
         //create a key item
-        collegeCenter.addItem(key);
+        studentCenter.addItem(key);
         //guidance.addItem(key);
 
         
@@ -104,7 +104,7 @@ public class Game
         
         new Door(collegeCenter,"north",artCenter,"south",null);
         new Door(collegeCenter,"south",library,"north",null);
-        new Door(collegeCenter,"east",studentCenter,"west",key);
+        new Door(collegeCenter,"east",studentCenter,"west",null);
 
         
         new Door(artCenter,"north",theater,"south",null);

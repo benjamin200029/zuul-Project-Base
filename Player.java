@@ -36,8 +36,6 @@ public class Player
     // the maximum weight player can carry
     private int maxWeight;
     
-    private Item items = new Item();
-
 
     /**
      * Constructor for objects of class Player
@@ -77,11 +75,7 @@ public class Player
         }
         Room nextRoom = door.open(currentRoom);
          if(nextRoom == null){
-            //enterRoom(nextRoom);
-            //if(Item key == playerItems.get(index)){   
-            //}
-            //tryed this attempt but facing errors
-            Iterator iter = items.iterator();
+            Iterator iter = playerItems.iterator();
             while(iter.hasNext() && !door.unlock((Item) iter.next())); 
         }
         
