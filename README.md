@@ -67,7 +67,7 @@ DONE-one way trap door
 
 DONE-charged transporter (beamer)-can be taken, charged, used, and dropped.
 
-Benjamin working-locked doors and keys
+Done- locked doors and keys
 
 -random transporter (discuss with others about implementation)
 
