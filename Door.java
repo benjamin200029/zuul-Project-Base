@@ -54,7 +54,6 @@ public class Door
        if(this.key == key && key != null){
            locked = false;
         }
-
         return !locked;
     }
     
@@ -62,7 +61,8 @@ public class Door
      * Compares twos doors with different rooms and 
      * shows if the player can move with no problems
      * will return null if the room trnafer did not work
-     * @parem fromRoom
+     * @param fromRoom
+     * @return Room
      */
     
     public Room open(Room fromRoom)

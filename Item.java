@@ -11,8 +11,10 @@ public class Item
 {
     // Name of the item.
     private String name;
+    
     // Description of the item.
     private String description;
+    
     // holds how much the item weighs.
     private int weight;
     
@@ -43,11 +45,6 @@ public class Item
         chargedRoom = null;
     }
     
-    public Item()
-    {
-        items = new HashMap<String,Item>();
-    }
-    
     /**
      * Constructor for an edible item
      * @param name - name of this item
@@ -64,6 +61,11 @@ public class Item
         isEdible = true;
         this.hungerValue = hungerValue;
         chargedRoom = null;
+    }
+    
+    public Item()
+    {
+        items = new HashMap<String,Item>();
     }
     
     /**

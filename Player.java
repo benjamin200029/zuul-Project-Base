@@ -74,10 +74,6 @@ public class Player
         }
         Room nextRoom = door.open(currentRoom);
         if(nextRoom == null){
-            //enterRoom(nextRoom);
-            //if(Item key == playerItems.get(index)){   
-            //}
-            //tryed this attempt but facing errors
             Iterator iter = playerItems.iterator();
             while(iter.hasNext() && !door.unlock((Item) iter.next())); 
         }
@@ -136,7 +132,6 @@ public class Player
     {
         return currentHunger <= 0;
     }
-    
     
     /**
      * Returns the maximum hunger level for player
@@ -231,7 +226,6 @@ public class Player
             currentRoom = roomHistory.pop();
             moves ++;
             currentHunger += hungerChange;
-            //currentRoom = previousRoom;
         }
     }
     
@@ -421,5 +415,4 @@ public class Player
         }
         return "You do not have the transporter";
     }
-
 }
