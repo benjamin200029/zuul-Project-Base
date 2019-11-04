@@ -502,6 +502,10 @@ public class Game
                 System.out.println("You are talking to yourself");
             }
         }
+        else
+        {
+            System.out.println("Maybe you need to use the magic word");
+        }
     }
     
     /**
