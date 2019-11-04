@@ -58,6 +58,13 @@ public class Door
         return !locked;
     }
     
+    /**
+     * Compares twos doors with different rooms and 
+     * shows if the player can move with no problems
+     * 
+     * will return null if the room trnafer did not work
+     */
+    
     public Room open(Room fromRoom)
     {
         if(locked){
