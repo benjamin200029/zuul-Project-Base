@@ -36,7 +36,6 @@ public class Player
     // the maximum weight player can carry
     private int maxWeight;
     
-
     /**
      * Constructor for objects of class Player
      * @param name : Name of player

@@ -50,6 +50,7 @@ public class Game
         gym, library, parkingLot1, parkingLot2, sciCenter, cafeteria, collegeCenter, offCampus;
         
         Item flashlight, textbook, apple, mushroom, key, transporter;
+        
         NPC appleannie;
       
         // create the rooms
@@ -195,6 +196,9 @@ public class Game
         System.out.println("\nThank you for playing.  Good bye.");
     }
     
+    /**
+     * Prints out of time message
+     */
     private void printGameOver(){
         System.out.println("You are out of time, campus is closed!");
     }
