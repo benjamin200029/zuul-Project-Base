@@ -21,19 +21,13 @@
 public class Game
 {
     private Parser parser;
-    //private Room currentRoom;
     private Player player;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
-    {
-        // old code
-        //createRooms();
-        //parser = new Parser();
-        //roomHistory = new Stack<Room>();
-                
+    {         
         player = new Player("Steve");
         Room startRoom = createRooms();
         player.startRoom(startRoom); // start at the beginning, which is outside of the college
@@ -133,41 +127,8 @@ public class Game
         collegeCenter.addNpc(appleannie);
         appleannie.setRoom(collegeCenter);
         
-        //currentRoom = outside;
         // start game outside
         return outside;
-        
-        
-        //old code that was replaced
-        //outside.setExit("north", parkingLot1);
-        //outside.setExit("south", parkingLot2);
-        //outside.setExit("east", collegeCenter);
-        //parkingLot1.setExit("south",outside);
-        //parkingLot2.setExit("north",outside);
-        //collegeCenter.setExit("north", artCenter);
-        //collegeCenter.setExit("south", library);
-        //collegeCenter.setExit("east", studentCenter);
-        //collegeCenter.setExit("west", outside);
-        //theater.setExit("south",artCenter);
-        //artCenter.setExit("north",theater);
-        //artCenter.setExit("south",collegeCenter);
-        //studentCenter.setExit("west",collegeCenter);
-        //studentCenter.setExit("up",gym);
-        //studentCenter.setExit("down",cafeteria);
-        //gym.setExit("down",studentCenter);
-        //cafeteria.setExit("up",studentCenter);
-        //library.setExit("north",collegeCenter);
-        //library.setExit("east",sciCenter);
-        //library.setExit("up",guidance);
-        // guidance.setExit("up",office);
-        //guidance.setExit("down",library);
-        //office.setExit("down", guidance);
-       // new Door(guidance,"down",office,"up",null);
-        //sciCenter.setExit("west",library);
-        //sciCenter.setExit("east",sciLab);
-        //sciCenter.setExit("south",computerLab);
-        //computerLab.setExit("north", sciCenter);
-        //sciLab.setExit("west",sciCenter);
     }
     
     /**
@@ -319,11 +280,9 @@ public class Game
             System.out.println("Go where?");
             return;
         }
-
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        //Room nextRoom = player.getCurrentRoom().getExit(direction);
         Door door = player.getCurrentRoom().getDoor(direction);
 
         if (door == null) {
@@ -331,14 +290,11 @@ public class Game
         }
         else {
             if(player.access(direction)){
-                //currentRoom = nextRoom;
-                //currentRoom = door;
                 System.out.println(player.getLongDescription());
             }else{
                 System.out.println("The door is locked! Find the key.");
             }
-            //player.enterRoom(door);
-            //look();
+            
         }
     }
     
@@ -419,15 +375,6 @@ public class Game
     {
         System.out.println(player.listItems());
     }
-   
-    // /**
-     // * Enters the selected room and prints the description
-     // * @param nextRoom 
-     // */
-    // private void enterRoom(Room nextRoom){
-        // currentRoom = nextRoom;
-        // look();
-    // }
     
     public void eat(Command command)
     {
@@ -511,12 +458,4 @@ public class Game
             System.out.println("Maybe you need to use the magic word");
         }
     }
-    
-    /**
-     * Enters the selected room and prints the description
-     */
-    // private void openDoor(Door nextDoor){
-        // currentRoom = nextDoor;
-        // System.out.println(currentRoom.getLongDescription());
-    // }
 }

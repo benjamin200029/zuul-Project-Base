@@ -22,14 +22,6 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;
     private HashMap<String, Door> doors;   
-
-    // stores exits of this room.
-    
-    //Do we still need these Rooms?
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
     
     //Stores items in this room
     private ArrayList<Item> roomItems;
@@ -50,16 +42,6 @@ public class Room
         doors = new HashMap<>();
         roomItems = new ArrayList<Item>(5);
         npc = null;
-    }
-
-    /**
-     * Define an exit from this room.
-     * @param direction The direction of the exit.
-     * @param neighbor  The room to which the exit leads.
-     */
-    public void setExit(String direction, Room neighbor) 
-    {
-        exits.put(direction, neighbor);
     }
     
     /**
@@ -90,25 +72,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        //old code
-        //return "You are " + description + ".\n" + getExitString() + "\n" + getItemString();
         return "You are " + description + ".\n" + getDoorString() + "\n" + getItemString() + npcInRoom();
-
-    }
-
-    /**
-     * Return a string describing the room's exits, for example
-     * "Exits: north west".
-     * @return Details of the room's exits.
-     */
-    private String getExitString()
-    {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
     }
     
     /**
@@ -124,17 +88,6 @@ public class Room
             returnString += " " + door;
         }
         return returnString;
-    }
-
-    /**
-     * Return the room that is reached if we go from this room in direction
-     * "direction". If there is no room in that direction, return null.
-     * @param direction The exit's direction.
-     * @return The room in the given direction.
-     */
-    public Room getExit(String direction) 
-    {
-        return exits.get(direction);
     }
     
     /**
