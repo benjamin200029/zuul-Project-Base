@@ -60,7 +60,7 @@ public class Door
     /**
      * Compares twos doors with different rooms and 
      * shows if the player can move with no problems
-     * will return null if the room trnafer did not work
+     * will return null if the room transfer did not work
      * @param fromRoom
      * @return Room
      */
